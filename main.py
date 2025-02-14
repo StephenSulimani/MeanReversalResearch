@@ -11,6 +11,7 @@ import requests
 from tqdm import tqdm
 
 from helpers import parse_timeframe
+from macrotrends import MacroTrends
 from stooq import Stooq
 
 
@@ -161,18 +162,25 @@ def get_sector_pairs(
 
 
 if __name__ == "__main__":
-    sp500_df = sp500_sectors()
+    aapl_df = MacroTrends.download("AAPL", "2025-02-09", "2025-02-12")
 
-    if sp500_df is False:
-        print("Failed to scrape S&P 500")
-        exit(1)
+    print(aapl_df.head())
+    print(aapl_df.tail())
 
-    sp500_dict = organize_stocks(sp500_df)
 
-    print("Stocks Organized")
-
-    data, end = get_sector_pairs("20231012", "1y", sp500_dict)
-
-    print(json.dumps(data, indent=4))
-
-    print(end.strftime("%Y-%m-%d"))
+# if __name__ == "__main__":
+#     sp500_df = sp500_sectors()
+#
+#     if sp500_df is False:
+#         print("Failed to scrape S&P 500")
+#         exit(1)
+#
+#     sp500_dict = organize_stocks(sp500_df)
+#
+#     print("Stocks Organized")
+#
+#     data, end = get_sector_pairs("20231012", "1y", sp500_dict)
+#
+#     print(json.dumps(data, indent=4))
+#
+#     print(end.strftime("%Y-%m-%d"))
