@@ -1,5 +1,6 @@
 import json
 import re
+from datetime import datetime
 from typing import Dict, List
 
 import pandas as pd
@@ -61,3 +62,22 @@ def organize_stocks(sp500_df: pd.DataFrame) -> Dict[str, List[str]]:
         print("Incorrect number of sectors")
         return {}
     return sp500_dict
+
+
+def get_sector_pairs(
+    start_date: str, timeframe: str, sp500_sectors: Dict[str, List[str]]
+):
+    """
+    This function calculates the best performing stock and the worst performing stock
+    for each sector in the S&P 500 over a given timeframe.
+
+    :param start_date: Start date formatted YYYYMMDD.
+    :param timeframe: Timeframe to look past start_date.
+    :param sp500_sectors: Dictionary containing the S&P 500 stocks grouped by sector.
+    """
+    data = {}
+
+    for key in sp500_sectors.keys():
+        data[key] = {"Best": {}, "Worst": {}}
+
+    start = datetime.strptime(start_date, "%Y%m%d")
