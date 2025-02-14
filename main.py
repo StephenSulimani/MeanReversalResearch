@@ -99,10 +99,7 @@ def get_stock_returns(
         final_price = df["Close"].iloc[-1]
         total_return = (final_price - initial_price) / initial_price * 100
 
-        print(f"{sector} - {ticker} - {total_return:.2f}")
-
         with lock:
-            print(f"{ticker} - {total_return:.2f}")
             if total_return > data_dict[sector]["Best"]["Return"]:
                 data_dict[sector]["Best"]["Ticker"] = ticker
                 data_dict[sector]["Best"]["Return"] = total_return
@@ -138,24 +135,32 @@ def get_sector_pairs(
     end = start + parse_timeframe(timeframe)
 
     for sector in tqdm(sp500_sectors.keys(), desc="Sector Loop", position=0):
-        pool = ThreadPool(2)
+        pool = ThreadPool(5)
         lock = Lock()
         for stock in tqdm(
             sp500_sectors[sector], desc="Stock Loop", position=1, leave=False
         ):
-            pool.apply_async(
-                get_stock_returns,
-                (
-                    sector,
-                    stock,
-                    start.strftime("%Y%m%d"),
-                    end.strftime("%Y%m%d"),
-                    data,
-                    lock,
-                ),
+            get_stock_returns(
+                sector,
+                stock,
+                start.strftime("%Y%m%d"),
+                end.strftime("%Y%m%d"),
+                data,
+                lock,
             )
-        pool.close()
-        pool.join()
+    #            pool.apply_async(
+    #                get_stock_returns,
+    #                (
+    #                    sector,
+    #                    stock,
+    #                    start.strftime("%Y%m%d"),
+    #                    end.strftime("%Y%m%d"),
+    #                    data,
+    #                    lock,
+    #                ),
+    #            )
+    #        pool.close()
+    #        pool.join()
 
     return data, end
 
