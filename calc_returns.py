@@ -1,4 +1,5 @@
 from stooq import Stooq
+import json
 
 
 def calc_short_return(ticker, start_date, end_date):
@@ -74,12 +75,40 @@ def calc_long_return(ticker, start_date, end_date):
     for key, value in result.items():
         print(f"\t{key}: {value}")
 
+# WORK IN PROGRESS!!!! WORK IN PROGRESS!!!!
+# def eleven_pairs(best_worst_pairs: dict, start_date: str, end_date: str):
+def eleven_pairs():
+
+    """
+    Finds the returns of the best and worst pair for each "GICS"
+    identified sector in the S&P 500 over a given time frame for
+    testing.
+    :param start_date: The start date.
+    :param end_date: The end date.
+    :return: None (for RIGHT NOW)
+    """
+
+    with open("sample_sector_pairs.json", "r") as json_file:
+        sample_sector_pairs = json.load(json_file)
+
+    print(f"The type of sample_sector_pairs is: "
+          f"{type(sample_sector_pairs)}")
+
+    # Accessing the first sector (e.g., "Industrials") and its stock list
+    first_sector = list(sample_sector_pairs.keys())[0]  # This gets the first sector name
+    print(f"\n\nstocks_by_sector[{first_sector}] is:\n"
+          f" {sample_sector_pairs[first_sector]}")
+
+
+
 
 # Example usage
 if __name__ == "__main__":
     # short_stock_return("AAPL", "2023-08-13", "2024-02-13")
     print("Example Usage:")
-    print("Short on AAPL from 2023-08-13 to 2024-02-13")
-    calc_short_return("AAPL", "20230813", "20240213")
-    print("\nLong on GOOG from 2023-08-13 to 2024-02-13")
-    calc_long_return("GOOG", "20230813", "20240213")
+    # print("Short on AAPL from 2023-08-13 to 2024-02-13")
+    # calc_short_return("AAPL", "20230813", "20240213")
+    # print("\nLong on GOOG from 2023-08-13 to 2024-02-13")
+    # calc_long_return("GOOG", "20230813", "20240213")
+    print("calling eleven_pairs")
+    eleven_pairs()
