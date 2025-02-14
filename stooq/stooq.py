@@ -1,8 +1,9 @@
 import re
 import time
 from typing import List
-import requests
+
 import pandas as pd
+import requests
 
 
 class Stooq:
@@ -81,7 +82,13 @@ class Stooq:
             f"https://stooq.com/q/d/l/?s={ticker}&d1={startDate}&d2={endDate}&i=d"
         )
 
-        response = requests.get(request_url)
+        headers = {
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+            "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36",
+            "Accept-Language": "en-US,en;q=0.9",
+        }
+
+        response = requests.get(request_url, headers=headers)
 
         df = pd.DataFrame(
             columns=pd.Index(["Date", "Open", "High", "Low", "Close", "Volume"])
