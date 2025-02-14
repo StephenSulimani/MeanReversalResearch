@@ -1,0 +1,1 @@
+from .stooq import Stooq
