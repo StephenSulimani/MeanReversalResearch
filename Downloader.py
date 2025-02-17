@@ -22,9 +22,16 @@ def main():
 
     for sector in tqdm(sp500_dict.keys(), desc="Sector", position=0):
         for ticker in tqdm(sp500_dict[sector], desc="Stock", position=1, leave=False):
-            df = MacroTrends.download(ticker)
-            df.to_csv(f"data/{ticker}.csv")
-            time.sleep(25)
+            if os.path.exists(f"data/{ticker}.csv"):
+                continue
+            while True:
+                try:
+                    df = MacroTrends.download(ticker)
+                    df.to_csv(f"data/{ticker}.csv")
+                    time.sleep(25)
+                    break
+                except:
+                    pass
 
 
 if __name__ == "__main__":
