@@ -1,8 +1,9 @@
+import os
 from datetime import datetime
 from typing import List, Tuple
-import matplotlib.pyplot as plt
+
 import matplotlib.dates as mdates
-import os
+import matplotlib.pyplot as plt
 import pandas as pd
 
 from financialcalc.positions import PositionType, calculate_position
@@ -10,7 +11,7 @@ from financialcalc.positions import PositionType, calculate_position
 
 class Sector:
     sector_name: str
-    sector_stocks = []
+    sector_stocks: List[str] = []
     start_date: datetime
     midpoint_date: datetime
     end_date: datetime
@@ -128,34 +129,61 @@ class Sector:
         Graphs the best and worst stocks in a sector between given date ranges, with the short of the best
         stock and long of the worst stock shown after the midpoint.
         """
-        best_df = self.best_stock_df.loc[self.start_date: self.end_date].copy()
-        worst_df = self.worst_stock_df.loc[self.start_date: self.end_date].copy()
+        best_df = self.best_stock_df.loc[self.start_date : self.end_date].copy()
+        worst_df = self.worst_stock_df.loc[self.start_date : self.end_date].copy()
 
         # Plotting the cumulative return of the best performing stock in the sector
         initial_close = best_df["Close"].iloc[0]
-        best_df["Cum_Return"] = ((best_df["Close"] - initial_close) / initial_close) * 100
+        best_df["Cum_Return"] = (
+            (best_df["Close"] - initial_close) / initial_close
+        ) * 100
 
-        best_df_first = best_df.loc[:self.midpoint_date]
-        best_df_second = best_df.loc[self.midpoint_date:]
+        best_df_first = best_df.loc[: self.midpoint_date]
+        best_df_second = best_df.loc[self.midpoint_date :]
 
-        plt.plot(best_df_first.index, best_df_first["Cum_Return"], label=f"{self.best_stock} (Best)", color="blue")
-        plt.plot(best_df_second.index, best_df_second["Cum_Return"], linestyle='dashed', color="blue",
-                 label=f"{self.best_stock} (Backtesting) | Position Return: {self.short_performance:.2f}%")
+        plt.plot(
+            best_df_first.index,
+            best_df_first["Cum_Return"],
+            label=f"{self.best_stock} (Best)",
+            color="blue",
+        )
+        plt.plot(
+            best_df_second.index,
+            best_df_second["Cum_Return"],
+            linestyle="dashed",
+            color="blue",
+            label=f"{self.best_stock} (Backtesting) | Position Return: {self.short_performance:.2f}%",
+        )
 
         # Plotting the cumulative return of the worst performing stock in the sector
         initial_close = worst_df["Close"].iloc[0]
-        worst_df["Cum_Return"] = ((worst_df["Close"] - initial_close) / initial_close) * 100
+        worst_df["Cum_Return"] = (
+            (worst_df["Close"] - initial_close) / initial_close
+        ) * 100
 
-        worst_df_first = worst_df.loc[:self.midpoint_date]
-        worst_df_second = worst_df.loc[self.midpoint_date:]
+        worst_df_first = worst_df.loc[: self.midpoint_date]
+        worst_df_second = worst_df.loc[self.midpoint_date :]
 
-        plt.plot(worst_df_first.index, worst_df_first["Cum_Return"], label=f"{self.worst_stock} (Worst)", color="red")
-        plt.plot(worst_df_second.index, worst_df_second["Cum_Return"], linestyle='dashed', color="red",
-                 label=f"{self.worst_stock} (Backtesting) | Position Return: {self.long_performance:.2f}%")
+        plt.plot(
+            worst_df_first.index,
+            worst_df_first["Cum_Return"],
+            label=f"{self.worst_stock} (Worst)",
+            color="red",
+        )
+        plt.plot(
+            worst_df_second.index,
+            worst_df_second["Cum_Return"],
+            linestyle="dashed",
+            color="red",
+            label=f"{self.worst_stock} (Backtesting) | Position Return: {self.long_performance:.2f}%",
+        )
 
         # Collecting absolute values of all the max & min returns to find the largest in either direction
         best_max, best_min = (best_df["Cum_Return"].max(), best_df["Cum_Return"].min())
-        worst_max, worst_min = (worst_df["Cum_Return"].max(), worst_df["Cum_Return"].min())
+        worst_max, worst_min = (
+            worst_df["Cum_Return"].max(),
+            worst_df["Cum_Return"].min(),
+        )
         all_extrema = [abs(best_max), abs(best_min), abs(worst_max), abs(worst_min)]
 
         # Setting the y-limit to the highest extrema + a 10% buffer:
@@ -164,7 +192,13 @@ class Sector:
         plt.ylim(-y_lim - buffer, y_lim + buffer)
 
         # Drawing vertical dashed line at midpoint
-        plt.axvline(mdates.date2num(self.midpoint_date), color='black', linestyle='dashed', linewidth=2, label="Start of Backtest")
+        plt.axvline(
+            mdates.date2num(self.midpoint_date),
+            color="black",
+            linestyle="dashed",
+            linewidth=2,
+            label="Start of Backtest",
+        )
 
         # Labeling and setting up my plot
         plt.title(f"{self.sector_name}: Best and Worst Stocks Compared")
@@ -174,10 +208,12 @@ class Sector:
         plt.grid(True)
 
         # Saving the plot onto local storage (I .gitignored ./graphs but we can test non-local storage in future)
-        image_directory = './graphs'
+        image_directory = "./graphs"
         os.makedirs(image_directory, exist_ok=True)
         image_path = f"{image_directory}/{self.sector_name}.png"
         plt.savefig(image_path)
         plt.close()
 
-        print(f"Graphed and saved stock comparison of {self.best_stock} vs {self.worst_stock}. in {image_path}")
+        print(
+            f"Graphed and saved stock comparison of {self.best_stock} vs {self.worst_stock}. in {image_path}"
+        )
