@@ -10,11 +10,11 @@ class PositionType(Enum):
 
 def calculate_position(stock_df: pd.DataFrame, pos_type: PositionType) -> float:
     """
-    Given a stock's dataframe and position type, calculate the positon's
+    Given a stock's DataFrame and position type, calculate the positon's
     return as a float.
 
-    :param stock_df: pd.DataFrame
-    :param pos_type: PositionType
+    :param stock_df: The DataFrame representing the stock's historical price.
+    :param pos_type: The position type to calculate for.
     :return: float
     """
     first_day = stock_df["Open"].iloc[0]
