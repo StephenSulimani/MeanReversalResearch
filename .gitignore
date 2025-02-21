@@ -1,3 +1,7 @@
 __pycache__/
 .idea
 data/
+sample_sector_pairs.json
+stocks_by_sector.json
+temp.py
+
