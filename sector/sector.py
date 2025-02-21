@@ -121,7 +121,6 @@ class Sector:
         """
         self.set_dates(start_date, midpoint_date, end_date)
         self.calculate_best_worst()
-        print(f"{self.sector_name}: {self.best_stock} vs {self.worst_stock}")
         self.test_best_worst()
 
     def graph_sectors(self):
