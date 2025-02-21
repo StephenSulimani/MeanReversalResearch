@@ -1,19 +1,14 @@
 import json
-import re
 import traceback
 from datetime import datetime
-from multiprocessing.pool import ThreadPool
-from threading import Lock
-from typing import Dict, List, Literal, Tuple
+from typing import Dict, List, Tuple
 
 import pandas as pd
-import requests
 from tqdm import tqdm
 
+from calc_returns import process_sector_pairs
 from helpers import parse_timeframe
-from macrotrends import MacroTrends
 from sp500 import organize_stocks, sp500_sectors
-from stooq import Stooq
 
 
 def get_stock_returns(
@@ -48,18 +43,18 @@ def get_stock_returns(
         total_return = (final_price - initial_price) / initial_price * 100
 
         if (
-            total_return > data_dict[sector]["Best"]["Return"]
-            or data_dict[sector]["Best"]["Return"] == 0
+            total_return > data_dict[sector]["Best"]["Past_Return"]
+            or data_dict[sector]["Best"]["Past_Return"] == 0
         ):
             data_dict[sector]["Best"]["Ticker"] = ticker
-            data_dict[sector]["Best"]["Return"] = total_return
+            data_dict[sector]["Best"]["Past_Return"] = total_return
 
         if (
-            total_return < data_dict[sector]["Worst"]["Return"]
-            or data_dict[sector]["Worst"]["Return"] == 0
+            total_return < data_dict[sector]["Worst"]["Past_Return"]
+            or data_dict[sector]["Worst"]["Past_Return"] == 0
         ):
             data_dict[sector]["Worst"]["Ticker"] = ticker
-            data_dict[sector]["Worst"]["Return"] = total_return
+            data_dict[sector]["Worst"]["Past_Return"] = total_return
     except:
         print(f"Error with stock: {ticker}")
         print(traceback.format_exc())
@@ -80,8 +75,8 @@ def get_sector_pairs(
 
     for key in sp500_sectors.keys():
         data[key] = {
-            "Best": {"Ticker": "", "Return": 0},
-            "Worst": {"Ticker": "", "Return": 0},
+            "Best": {"Ticker": "", "Past_Return": 0},
+            "Worst": {"Ticker": "", "Past_Return": 0},
         }
 
     start = datetime.strptime(start_date, "%Y%m%d")
@@ -110,8 +105,22 @@ if __name__ == "__main__":
 
     print("Stocks Organized")
 
-    data, end = get_sector_pairs("20231012", "1y", sp500_dict)
+    start_date = datetime.strptime("20231012", "%Y%m%d")
+
+    data, end = get_sector_pairs(start_date.strftime("%Y%m%d"), "1y", sp500_dict)
+
+    backtest_end = process_sector_pairs(data, end, "3m")
+
+    total_return = 0
+
+    for sector in data.keys():
+        total_return += data[sector]["Best"]["Backtest_Return"]
+        total_return += data[sector]["Worst"]["Backtest_Return"]
 
     print(json.dumps(data, indent=4))
 
-    print(end.strftime("%Y-%m-%d"))
+    print(f"Total Return Percentage: {total_return:.2f}%")
+
+    print(f"Start Date: {start_date.strftime("%Y-%m-%d")}")
+    print(f"Midpoint: {end.strftime('%Y-%m-%d')}")
+    print(f"End Date: {backtest_end.strftime('%Y-%m-%d')}")
