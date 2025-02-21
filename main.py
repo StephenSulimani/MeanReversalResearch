@@ -11,3 +11,4 @@ if __name__ == "__main__":
         sector = Sector(sector_name, sector_stocks)
 
         sector.run_calculations(START_DATE, MIDPOINT_DATE, END_DATE)
+        sector.graph_sectors()
