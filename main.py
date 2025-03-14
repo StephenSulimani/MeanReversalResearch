@@ -2,6 +2,9 @@ from datetime import datetime
 
 from sector import Sector, sp500_sectors
 from testbench import Portfolio
+from helpers import *
+import pandas as pd
+
 
 if __name__ == "__main__":
     sectors = sp500_sectors()
@@ -27,3 +30,17 @@ if __name__ == "__main__":
 
     portfolio = Portfolio(1000000, start_date_dt, "3m", "1m", end_date_dt)
     portfolio.run_strategy(sector_list)
+
+    # graphing
+    file_path = "data/SPY.csv"
+    spy_df = import_and_filter_csv(file_path)
+    spy_series = df_to_close_series(spy_df)
+
+    port_df = pd.read_csv('TestPortfolio.csv', parse_dates=['Date'])
+    test_port_df = port_df.copy()
+
+    test_port_df.set_index('Date', inplace=True)
+    port_series = test_port_df['0']
+
+    pretty_line_chart(port_series, spy_series)
+
