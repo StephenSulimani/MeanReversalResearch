@@ -4,6 +4,7 @@ from datetime import datetime
 import matplotlib.pyplot as plt
 import pandas as pd
 
+from helpers import *
 from sector import Sector, sp500_sectors
 from testbench import Portfolio
 
