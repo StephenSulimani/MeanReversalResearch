@@ -35,7 +35,7 @@ if __name__ == "__main__":
     end_date_dt = datetime.strptime(end_date, "%Y-%m-%d")
 
     portfolio = Portfolio(1000000, start_date_dt, "3m", "1m", end_date_dt)
-    portfolio.run_strategy(sector_list, random_stocks=True)
+    #    portfolio.run_strategy(sector_list, random_stocks=True)
 
     # portfolio = pd.read_csv("TestPortfolio.csv")
     # portfolio["Date"] = pd.to_datetime(portfolio["Date"], format="%Y-%m-%d")
@@ -56,3 +56,17 @@ if __name__ == "__main__":
     # plt.plot(portfolio, label="Portfolio")
     # plt.legend()
     # plt.show()
+
+    # Graphing
+
+    file_path = "data/SPY.csv"
+    spy_df = import_and_filter_csv(file_path)
+    spy_series = df_to_close_series(spy_df)
+
+    port_df = pd.read_csv("TestPortfolio.csv", parse_dates=["Date"])
+    test_port_df = port_df.copy()
+
+    test_port_df.set_index("Date", inplace=True)
+    port_series = test_port_df["0"]
+
+    pretty_line_chart(port_series, spy_series)
