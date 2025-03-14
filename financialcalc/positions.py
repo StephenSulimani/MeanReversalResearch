@@ -45,20 +45,20 @@ def calculate_position_daily(
     position_value = pd.Series(index=stock_df.index)
     position_value.iloc[0] = value
 
+    stock_original_price = stock_df["Open"].iloc[0]
+
     if pos_type == PositionType.LONG:
         for i in range(1, len(stock_df)):
-            position_value.iloc[i] = position_value.iloc[i - 1] * (
-                1
-                + (stock_df["Close"].iloc[i] - stock_df["Open"].iloc[i])
-                / stock_df["Open"].iloc[i]
+            # Calculate the portfolio value each day, WITHOUT compounding.
+            position_value.iloc[i] = value * (
+                stock_df["Close"].iloc[i] / stock_original_price
             )
 
     if pos_type == PositionType.SHORT:
         for i in range(1, len(stock_df)):
-            position_value.iloc[i] = position_value.iloc[i - 1] * (
-                1
-                - (stock_df["Open"].iloc[i] - stock_df["Close"].iloc[i])
-                / stock_df["Open"].iloc[i]
+            # Calculate the portfolio value each day, WITHOUT compounding.
+            position_value.iloc[i] = value * (
+                stock_original_price / stock_df["Close"].iloc[i]
             )
 
     return position_value

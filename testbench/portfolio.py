@@ -60,7 +60,7 @@ class Portfolio:
             capital / 2, worst_stock_df, PositionType.LONG
         )
 
-        return pd.concat([best_position, worst_position])
+        return best_position + worst_position
 
     def run_strategy(self, sectors: List[Sector]) -> pd.Series:
         backtest_timeframe_delta = parse_timeframe(self.backtest_interval)
@@ -87,8 +87,6 @@ class Portfolio:
 
             sector_performance_series = pd.Series()
 
-            new_balance = self.balance
-
             for sector in sectors:
                 sector.set_dates(
                     backtest_start_date.strftime("%Y-%m-%d"),
@@ -106,12 +104,21 @@ class Portfolio:
                     test_end_date,
                 )
 
-                # new_balance += position[last]
-                new_balance += positions.iloc[-1]
-                portfolio_value = pd.concat([portfolio_value, positions])
+                if sector_performance_series.empty:
+                    sector_performance_series = positions
+                else:
+                    sector_performance_series += positions
 
-            self.balance = new_balance
+            if portfolio_value.empty:
+                portfolio_value = sector_performance_series
+            else:
+                portfolio_value = pd.concat(
+                    [portfolio_value, sector_performance_series]
+                )
+            self.balance = float(portfolio_value.iloc[-1])
 
             print(f"Balance After Test {i+1}: {self.balance}")
+            print(portfolio_value.tail(25))
+            portfolio_value.to_csv("port.csv")
 
         return portfolio_value
