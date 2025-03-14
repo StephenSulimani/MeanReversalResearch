@@ -27,3 +27,38 @@ def calculate_position(stock_df: pd.DataFrame, pos_type: PositionType) -> float:
         return ((first_day - last_day) / first_day) * 100
 
     return -999.99
+
+
+def calculate_position_daily(
+    value: float, stock_df: pd.DataFrame, pos_type: PositionType
+) -> pd.Series:
+    """
+    Given a stock's DataFrame and position type, calculate the position's performance, in terms of
+    position value every day, represented by a pd.Series indexed by date.
+
+    :param value: The starting capital for the position.
+    :param stock_df: The DataFrame representing the stock's historical price.
+    :param pos_type: The position type to calculate for.
+    :return: pd.Series
+    """
+
+    position_value = pd.Series(index=stock_df.index)
+    position_value.iloc[0] = value
+
+    if pos_type == PositionType.LONG:
+        for i in range(1, len(stock_df)):
+            position_value.iloc[i] = position_value.iloc[i - 1] * (
+                1
+                + (stock_df["Close"].iloc[i] - stock_df["Open"].iloc[i])
+                / stock_df["Open"].iloc[i]
+            )
+
+    if pos_type == PositionType.SHORT:
+        for i in range(1, len(stock_df)):
+            position_value.iloc[i] = position_value.iloc[i - 1] * (
+                1
+                - (stock_df["Open"].iloc[i] - stock_df["Close"].iloc[i])
+                / stock_df["Open"].iloc[i]
+            )
+
+    return position_value
