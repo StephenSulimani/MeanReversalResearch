@@ -4,7 +4,8 @@ from datetime import datetime
 import matplotlib.pyplot as plt
 import pandas as pd
 
-from helpers import *
+from helpers import (df_to_close_series, import_and_filter_csv,
+                     pretty_line_chart)
 from sector import Sector, sp500_sectors
 from testbench import Portfolio
 
