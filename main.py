@@ -37,39 +37,42 @@ if __name__ == "__main__":
 
     portfolio = Portfolio(1000000, start_date_dt, "3m", "1m", end_date_dt)
 
-    # Graphing
+    # portfolio.run_strategy(sector_list)
+
+    # # Graphing
     # SPY
     file_path = "data/SPY.csv"
     spy_df = import_and_filter_csv(file_path)
     spy_series = df_to_close_series(spy_df)
 
-    # Mean Reversal Portfolio
+    # # Mean Reversal Portfolio
     port_df = pd.read_csv("TestPortfolio.csv", parse_dates=["Date"])
     test_port_df = port_df.copy()
     test_port_df.set_index("Date", inplace=True)
     port_series = test_port_df["0"]
 
-    # Random Test One
+    # # Random Test One
     rand_one_df = pd.read_csv("RandomTest1.csv", parse_dates=["Date"])
     test_rand_one_df = rand_one_df.copy()
     test_rand_one_df.set_index("Date", inplace=True)
     rand_one_series = test_rand_one_df["0"]
 
-    # Random Test Two
+    # # Random Test Two
     rand_two_df = pd.read_csv("RandomTest2.csv", parse_dates=["Date"])
     test_rand_two_df = rand_two_df.copy()
     test_rand_two_df.set_index("Date", inplace=True)
     rand_two_series = test_rand_two_df["0"]
 
-    # Random Test Two
+    # # Random Test Two
     rand_three_df = pd.read_csv("RandomTest3.csv", parse_dates=["Date"])
     test_rand_three_df = rand_three_df.copy()
     test_rand_three_df.set_index("Date", inplace=True)
     rand_three_series = test_rand_three_df["0"]
 
-    # Plot of Mean Reversal Portfolio vs SPY
+    # # Plot of Mean Reversal Portfolio vs SPY
     pretty_line_chart(port_series, spy_series)
 
-    # Plot of Mean Reversal Portfolio vs SPY vs Random Tests
-    pretty_line_chart(port_series, spy_series, rand_one_series, rand_two_series, rand_three_series)
-
+    # # Plot of Mean Reversal Portfolio vs SPY vs Random Tests
+    pretty_line_chart(
+        port_series, spy_series, rand_one_series, rand_two_series, rand_three_series
+    )

@@ -75,7 +75,7 @@ class Sector:
             try:
                 original_df = self.load_stock(ticker)
 
-                df = original_df.loc[self.start_date : self.midpoint_date]
+                df = original_df.loc[self.start_date : self.midpoint_date].iloc[:-1]
                 initial_price = df["Open"].iloc[0]
                 final_price = df["Close"].iloc[-1]
 
