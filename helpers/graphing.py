@@ -1,12 +1,21 @@
+import random
+
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 import pandas as pd
 
-def pretty_line_chart(series_one, series_two):
+def pretty_line_chart(series_one, series_two, *args):
     plt.figure(figsize=(16,10), dpi=80)
-    plt.plot(series_one.index, series_one.values, color='tab:red')
-    plt.plot(series_two.index, series_two.values, color='blue')  # New line to plot series_two in blue
+    plt.plot(series_one.index, series_one.values, color='tab:red', label="Mean Reversal Portfolio")
+    plt.plot(series_two.index, series_two.values, color='blue', label = "SPY")  # New line to plot series_two in blue
 
+    # For plotting variable random tests
+    random_rgb = lambda: (random.random(), random.random(), random.random())
+    i = 1
+    for arg in args:
+        to_label = f"Random Portfolio {i}"
+        plt.plot(series_one.index, arg.values, color=random_rgb(), label=to_label)
+        i += 1
 
     # Decoration: adjust the y-limits as needed
     global_min = min(series_one.min(), series_two.min())
@@ -21,13 +30,7 @@ def pretty_line_chart(series_one, series_two):
     ax.xaxis.set_major_locator(mdates.MonthLocator(interval=3))
     ax.xaxis.set_major_formatter(mdates.DateFormatter('%b %Y'))  # Use '%b' for abbreviated month name
 
-
-    # xtick_labels = [dt.strftime('%Y') for dt in xtick_locations]
-    # plt.xticks(ticks=xtick_locations, labels=xtick_labels, rotation=0, fontsize=12, horizontalalignment='center',
-    #            alpha=0.7)
-    # plt.yticks(fontsize=12, alpha=0.7)
-
-    plt.title("Random Portfolio Values", fontsize=22)
+    plt.title("Comparison of Mean Reversal Portfolio to SPY", fontsize=22)
     plt.grid(axis='both', alpha=0.3)
 
     # Remove borders
@@ -36,7 +39,9 @@ def pretty_line_chart(series_one, series_two):
     ax.spines["right"].set_alpha(0.0)
     ax.spines["left"].set_alpha(0.3)
 
+    plt.legend(loc="upper left", fontsize=16)
     plt.show()
+
 
 def import_and_filter_csv(path_to_csv):
     """
