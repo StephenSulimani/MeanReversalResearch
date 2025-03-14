@@ -1,3 +1,4 @@
+import random
 from datetime import datetime
 from typing import List
 
@@ -62,7 +63,7 @@ class Portfolio:
 
         return best_position + worst_position
 
-    def run_strategy(self, sectors: List[Sector]) -> pd.Series:
+    def run_strategy(self, sectors: List[Sector], random_stocks=False) -> pd.Series:
         backtest_timeframe_delta = parse_timeframe(self.backtest_interval)
         test_timeframe_delta = parse_timeframe(self.test_interval)
 
@@ -93,21 +94,37 @@ class Portfolio:
                     backtest_end_date.strftime("%Y-%m-%d"),
                     test_end_date.strftime("%Y-%m-%d"),
                 )
-                sector.calculate_best_worst()
+                best_stock = ""
+                worst_stock = ""
 
-                capital = self.balance / len(sectors)
-                positions = self.calculate_positions(
-                    capital,
-                    sector.best_stock,
-                    sector.worst_stock,
-                    test_start_date,
-                    test_end_date,
-                )
+                while True:
 
-                if sector_performance_series.empty:
-                    sector_performance_series = positions
-                else:
-                    sector_performance_series += positions
+                    if not random_stocks:
+                        sector.calculate_best_worst()
+
+                        best_stock = sector.best_stock
+                        worst_stock = sector.worst_stock
+                    else:
+                        best_stock = random.choice(sector.sector_stocks)
+                        worst_stock = random.choice(sector.sector_stocks)
+
+                    capital = self.balance / len(sectors)
+                    try:
+                        positions = self.calculate_positions(
+                            capital,
+                            best_stock,
+                            worst_stock,
+                            test_start_date,
+                            test_end_date,
+                        )
+
+                        if sector_performance_series.empty:
+                            sector_performance_series = positions
+                        else:
+                            sector_performance_series += positions
+                        break
+                    except:
+                        pass
 
             if portfolio_value.empty:
                 portfolio_value = sector_performance_series
