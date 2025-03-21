@@ -3,3 +3,6 @@ __pycache__/
 .idea
 graphs/
 temp.py
+cluster_kmeans_with_tickers.csv
+cluster_kmeans_11.csv
+merged_data.csv
