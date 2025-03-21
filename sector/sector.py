@@ -30,10 +30,11 @@ class Sector:
 
     def __init__(self, sector_name: str, sector_stocks: List[str]):
         """
-        The constructor for the Session class.
+        Constructor for the Session class.
 
-        :param sector_name: The name of the sector.
-        :param sector_stocks: The stock tickers contained within the sector.
+        Args:
+            sector_name (str): The name of the sector.
+            sector_stocks (list[str]): The stock tickers contained within the sector.
         """
         # Define Sector Properties
         self.sector_name = sector_name
@@ -43,9 +44,10 @@ class Sector:
         """
         The function to set the start, midpoint, and end dates.
 
-        :param start_date: The date to begin the analysis. %Y-%m-%d
-        :param midpoint_date: The date to end the analysis and open the position. %Y-%m-%d
-        :param end_date: The date to close the position. %Y-%m-%d
+        Args:
+            start_date (str): The date to begin the analysis. Format: %Y-%m-%d.
+            midpoint_date (str): The date to end the analysis and open the position. Format: %Y-%m-%d.
+            end_date (str): The date to close the position. Format: %Y-%m-%d.
         """
         # Parse Datetime Strings
         self.start_date = datetime.strptime(start_date, "%Y-%m-%d")
@@ -57,9 +59,11 @@ class Sector:
         """
         Loads and returns a stock's dataframe.
 
-        :param stock_ticker: The ticker of the stock.
-        :return: The DataFrame representing the stock's historical price.
-        :rtype: pd.DataFrame
+        Args:
+            stock_ticker (str): The ticker of the stock.
+
+        Returns:
+            pd.DataFrame: The DataFrame representing the stock's historical price.
         """
         # Change In Production!!
         if stock_ticker.endswith(".1"):
@@ -75,10 +79,7 @@ class Sector:
         return df
 
     def calculate_best_worst(self):
-        """
-        Calculates the best performing and worst performing
-        stocks in the sector.
-        """
+        """Calculates the best performing and worst performing stocks in the sector. """
         for ticker in self.sector_stocks:
             try:
                 original_df = self.load_stock(ticker)
@@ -104,8 +105,7 @@ class Sector:
                 pass
 
     def test_best_worst(self):
-        """
-        Calculate the performance of the SHORT and LONG positions,
+        """Calculate the performance of the SHORT and LONG positions,
         for the best and worst stocks in a sector, respectively.
         """
         best_df = self.best_stock_df.loc[self.midpoint_date : self.end_date]
@@ -116,17 +116,14 @@ class Sector:
 
     def run_calculations(self, start_date: str, midpoint_date: str, end_date: str):
         """
-        The master function for the Sector class that runs all
-        calculations needed to determine the best and worst stocks
-        in a sector, and then tests the mean reversion strategy by
-        opening a SHORT and LONG position for the best and worst stocks,
-        respectively. Finally, the returns are calculated for the two
-        positions and printed to the console and graphed.
+        The master function for the Sector class that runs all calculations needed to determine the best and worst stocks in a sector, and then tests the mean reversion strategy by opening a SHORT and LONG position for the best and worst stocks, respectively. Finally, the returns are calculated for the two positions and printed to the console and graphed.
 
-        :param start_date: The date to begin the analysis. %Y-%m-%d
-        :param midpoint_date: The date to end the analysis and open the position. %Y-%m-%d
-        :param end_date: The date to close the position. %Y-%m-%d
+        Args:
+            start_date (str): The date to begin the analysis. Format: %Y-%m-%d.
+            midpoint_date (str): The date to end the analysis and open the position. Format: %Y-%m-%d.
+            end_date (str): The date to close the position. Format: %Y-%m-%d.
         """
+
         self.set_dates(start_date, midpoint_date, end_date)
         self.calculate_best_worst()
         self.test_best_worst()

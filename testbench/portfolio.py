@@ -24,14 +24,14 @@ class Portfolio:
         test_interval: str,
         end_date: datetime,
     ):
-        """
-        Constructor for the Portfolio class.
+        """Constructor for the Portfolio class.
 
-        :param starting_balance: The balance to start the portfolio with.
-        :param start_date: The date to begin the portfolio at.
-        :param backtest_interval: The interval to lookback to determine best and worst performing stocks (1m for 1 month, 1d for 1 day, etc.)
-        :param test_interval: The interval to have the position open for.
-        :param end_date: The date to end the portfolio at.
+        Args:
+            starting_balance: The balance to start the portfolio with.
+            start_date: The date to begin the portfolio at.
+            backtest_interval: The interval to look back to determine best and worst performing stocks (e.g., "1m" for 1 month, "1d" for 1 day, etc.).
+            test_interval: The interval to have the position open for.
+            end_date: The date to end the portfolio at.
         """
 
         self.balance = starting_balance

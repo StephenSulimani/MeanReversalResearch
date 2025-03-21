@@ -2,6 +2,7 @@ import pandas as pd
 
 
 def get_row_by_date(df, target_date):
+    """gets the row by date"""
     target_date = pd.to_datetime(target_date)
 
     if target_date in df.index:

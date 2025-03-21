@@ -1,0 +1,15 @@
+site_name: "Mean Reversal Research"
+
+nav:
+  - Home: index.md
+  - FinancialCalc: financialcalc.md
+  - Helpers: helpers.md
+  - MacroTrends: macrotrends.md
+  - Sector: sector.md
+  - TestBench: testbench.md
+
+plugins:
+- search
+- mkdocstrings
+
+theme: material

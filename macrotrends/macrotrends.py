@@ -15,15 +15,17 @@ class MacroTrends:
         """
         Downloads stock data for a given ticker from MacroTrends.
 
-        :param start_date: The start date of the data to download, formatted as YYYY-MM-DD.
-        Defaults to the stock's inception.
-        :type start_date: str
-        :param end_date: The end date of the data to download, formatted as YYYY-MM-DD.
-        Defaults to the most recent available date.
-        :type end_date: str
-        :param ticker: The stock ticker to download data for.
-        :return:
+        Args:
+            start_date (str): The start date of the data to download, formatted as YYYY-MM-DD.
+                Defaults to the stock's inception.
+            end_date (str): The end date of the data to download, formatted as YYYY-MM-DD.
+                Defaults to the most recent available date.
+            ticker (str): The stock ticker to download data for.
+
+        Returns:
+            Any: Description of the returned value.
         """
+
         headers = {
             "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36",
             "Referer": f"https://www.macrotrends.net/assets/php/stock_price_history.php?t={ticker}",

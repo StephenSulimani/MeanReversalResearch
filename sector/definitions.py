@@ -6,11 +6,10 @@ import requests
 
 def sp500_sectors() -> Dict[str, List[str]] | Literal[False]:
     """
-    This function scrapes the S&P 500 stocks from the Wikipedia page,
-    and creates a Dict mapping each sector to a list of stock tickers.
+    This function scrapes the S&P 500 stocks from the Wikipedia page and creates a dict mapping each sector to a list of stock tickers.
 
-    :return: A Dict organizing all of the S&P 500 stocks. False if the request fails.
-    :rtype: pd.DataFrame | Literal[False]
+    Returns:
+        pd.DataFrame or Literal[False]: A dict organizing all of the S&P 500 stocks, or False if the request fails.
     """
     wikipedia_sp500_url = "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
 
