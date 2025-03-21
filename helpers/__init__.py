@@ -1,7 +1,10 @@
 import re
 
 from dateutil.relativedelta import relativedelta
-from .graphing import pretty_line_chart, import_and_filter_csv, df_to_close_series
+
+from .dates import get_row_by_date
+from .graphing import (df_to_close_series, import_and_filter_csv,
+                       pretty_line_chart)
 
 
 def parse_timeframe(timeframe: str) -> relativedelta:

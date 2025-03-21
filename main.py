@@ -29,7 +29,7 @@ if __name__ == "__main__":
         #        sector.graph_sectors()
 
         sector_list.append(sector)
-    start_date = "2020-01-01"
+    start_date = "2020-04-01"
     end_date = "2024-01-01"
 
     start_date_dt = datetime.strptime(start_date, "%Y-%m-%d")
@@ -37,7 +37,13 @@ if __name__ == "__main__":
 
     portfolio = Portfolio(1000000, start_date_dt, "3m", "1m", end_date_dt)
 
+    custom_clusters = pd.read_csv("cluster_kmeans_with_tickers.csv")
+    custom_clusters.set_index("Date", inplace=True)
+    custom_clusters.index = pd.to_datetime(custom_clusters.index)
+
     # portfolio.run_strategy(sector_list)
+    portfolio.run_custom_sectors(custom_clusters)
+    sys.exit(0)
 
     # # Graphing
     # SPY

@@ -35,6 +35,7 @@ class MacroTrends:
         )
 
         if resp.status_code != 200:
+            raise Exception("Failed to download stock data")
             resp.raise_for_status()
 
         lines = resp.text.split("\n")

@@ -62,11 +62,14 @@ class Sector:
         :rtype: pd.DataFrame
         """
         # Change In Production!!
+        if stock_ticker.endswith(".1"):
+            stock_ticker = stock_ticker[:-2]
         if os.path.exists(f"data/{stock_ticker}.csv"):
             df = pd.read_csv(f"data/{stock_ticker}.csv")
             df = df.set_index("Date")
             df.index = pd.to_datetime(df.index)
         else:
+            print(f"Downloading Stock Data for {stock_ticker}")
             df = MacroTrends.download(stock_ticker)
             df.to_csv(f"data/{stock_ticker}.csv")
         return df
