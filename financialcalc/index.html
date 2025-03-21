@@ -12,13 +12,15 @@
         <link rel="prev" href="..">
       
       
+        <link rel="next" href="../helpers/">
+      
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.9">
     
     
       
-        <title>FinancialCalc - My Library</title>
+        <title>FinancialCalc - Mean Reversal Research</title>
       
     
     
@@ -78,7 +80,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="My Library" class="md-header__button md-logo" aria-label="My Library" data-md-component="logo">
+    <a href=".." title="Mean Reversal Research" class="md-header__button md-logo" aria-label="Mean Reversal Research" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -92,7 +94,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            My Library
+            Mean Reversal Research
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -173,13 +175,13 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="My Library" class="md-nav__button md-logo" aria-label="My Library" data-md-component="logo">
+    <a href=".." title="Mean Reversal Research" class="md-nav__button md-logo" aria-label="Mean Reversal Research" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    My Library
+    Mean Reversal Research
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -290,6 +292,90 @@
   
 </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../helpers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Helpers
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../macrotrends/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MacroTrends
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sector/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sector
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testbench/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TestBench
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -468,99 +554,12 @@ return as a float.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Calculate daily position performance for a stock. This function computes the daily value of a position based on the starting capital, the historical price data of the stock, and the type of position (long or short).</p>
-
-
-<p><span class="doc-section-title">Examples:</span></p>
-    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">PeepeePooPoo</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">Hello</span>
-</code></pre></div>
-
-
-<p><span class="doc-section-title">Parameters:</span></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Type</th>
-          <th>Description</th>
-          <th>Default</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>value</code>
-            </td>
-            <td>
-                  <code><span title="float">float</span></code>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>The starting capital for the position.</p>
-              </div>
-            </td>
-            <td>
-                <em>required</em>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>stock_df</code>
-            </td>
-            <td>
-                  <code><span title="pandas.DataFrame">DataFrame</span></code>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>A DataFrame containing the stock's historical price data.</p>
-              </div>
-            </td>
-            <td>
-                <em>required</em>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>pos_type</code>
-            </td>
-            <td>
-                  <code><span title="financialcalc.positions.PositionType">PositionType</span></code>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>The type of position to calculate (e.g., long or short).</p>
-              </div>
-            </td>
-            <td>
-                <em>required</em>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-    <p><span class="doc-section-title">Returns:</span></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Type</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                  <code><span title="pandas.Series">Series</span></code>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>pd.Series: A Series indexed by date representing the position's value over time.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+        <p>Given a stock's DataFrame and position type, calculate the position's performance, in terms of
+position value every day, represented by a pd.Series indexed by date.</p>
+<p>:param value: The starting capital for the position.
+:param stock_df: The DataFrame representing the stock's historical price.
+:param pos_type: The position type to calculate for.
+:return: pd.Series</p>
 
 
             <details class="quote">
@@ -597,27 +596,17 @@ return as a float.</p>
 <span class="normal">61</span>
 <span class="normal">62</span>
 <span class="normal">63</span>
-<span class="normal">64</span>
-<span class="normal">65</span>
-<span class="normal">66</span>
-<span class="normal">67</span>
-<span class="normal">68</span>
-<span class="normal">69</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">calculate_position_daily</span><span class="p">(</span>
+<span class="normal">64</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">calculate_position_daily</span><span class="p">(</span>
     <span class="n">value</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">stock_df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">pos_type</span><span class="p">:</span> <span class="n">PositionType</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate daily position performance for a stock. This function computes the daily value of a position based on the starting capital, the historical price data of the stock, and the type of position (long or short).</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Given a stock&#39;s DataFrame and position type, calculate the position&#39;s performance, in terms of</span>
+<span class="sd">    position value every day, represented by a pd.Series indexed by date.</span>
 
-<span class="sd">    Examples:</span>
-<span class="sd">        &gt;&gt;&gt; PeepeePooPoo</span>
-<span class="sd">        &gt;&gt;&gt; Hello</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        value (float): The starting capital for the position.</span>
-<span class="sd">        stock_df (pd.DataFrame): A DataFrame containing the stock&#39;s historical price data.</span>
-<span class="sd">        pos_type (PositionType): The type of position to calculate (e.g., long or short).</span>
-
-<span class="sd">    Returns:</span>
-<span class="sd">        pd.Series: A Series indexed by date representing the position&#39;s value over time.</span>
+<span class="sd">    :param value: The starting capital for the position.</span>
+<span class="sd">    :param stock_df: The DataFrame representing the stock&#39;s historical price.</span>
+<span class="sd">    :param pos_type: The position type to calculate for.</span>
+<span class="sd">    :return: pd.Series</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">position_value</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">stock_df</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
