@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 from financialcalc.positions import PositionType, calculate_position
+from macrotrends import MacroTrends
 
 
 class Sector:
@@ -61,9 +62,13 @@ class Sector:
         :rtype: pd.DataFrame
         """
         # Change In Production!!
-        df = pd.read_csv(f"data/{stock_ticker}.csv")
-        df = df.set_index("Date")
-        df.index = pd.to_datetime(df.index)
+        if os.path.exists(f"data/{stock_ticker}.csv"):
+            df = pd.read_csv(f"data/{stock_ticker}.csv")
+            df = df.set_index("Date")
+            df.index = pd.to_datetime(df.index)
+        else:
+            df = MacroTrends.download(stock_ticker)
+            df.to_csv(f"data/{stock_ticker}.csv")
         return df
 
     def calculate_best_worst(self):
