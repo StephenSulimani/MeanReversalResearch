@@ -450,9 +450,6 @@
 
 
 <h1 id="financialcalc">FinancialCalc</h1>
-<p>This code is cool</p>
-<p>This module has simple functions:
-<code>fye</code></p>
 
 
 <div class="doc doc-object doc-module">
@@ -491,11 +488,78 @@
 
     <div class="doc doc-contents ">
 
-        <p>Given a stock's DataFrame and position type, calculate the positon's
-return as a float.</p>
-<p>:param stock_df: The DataFrame representing the stock's historical price.
-:param pos_type: The position type to calculate for.
-:return: float</p>
+        <p>Calculate the return of a position based on the provided stock DataFrame and position type.</p>
+<p>This function computes the position's return and returns it as a float.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>stock_df</code>
+            </td>
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A DataFrame containing the stock's historical price data.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>pos_type</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The type of position to calculate (e.g., long, short).</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+<th>Name</th>          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+<td><code>float</code></td>            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The calculated return of the position.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
             <details class="quote">
@@ -518,15 +582,23 @@ return as a float.</p>
 <span class="normal">26</span>
 <span class="normal">27</span>
 <span class="normal">28</span>
-<span class="normal">29</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">calculate_position</span><span class="p">(</span><span class="n">stock_df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">pos_type</span><span class="p">:</span> <span class="n">PositionType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Given a stock&#39;s DataFrame and position type, calculate the positon&#39;s</span>
-<span class="sd">    return as a float.</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">calculate_position</span><span class="p">(</span><span class="n">stock_df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">pos_type</span><span class="p">:</span> <span class="n">PositionType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate the return of a position based on the provided stock DataFrame and position type.</span>
 
-<span class="sd">    :param stock_df: The DataFrame representing the stock&#39;s historical price.</span>
-<span class="sd">    :param pos_type: The position type to calculate for.</span>
-<span class="sd">    :return: float</span>
+<span class="sd">    This function computes the position&#39;s return and returns it as a float.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        stock_df (pd.DataFrame): A DataFrame containing the stock&#39;s historical price data.</span>
+<span class="sd">        pos_type (str): The type of position to calculate (e.g., long, short).</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float: The calculated return of the position.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="n">first_day</span> <span class="o">=</span> <span class="n">stock_df</span><span class="p">[</span><span class="s2">&quot;Open&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">last_day</span> <span class="o">=</span> <span class="n">stock_df</span><span class="p">[</span><span class="s2">&quot;Close&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 
@@ -554,21 +626,99 @@ return as a float.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Given a stock's DataFrame and position type, calculate the position's performance, in terms of
-position value every day, represented by a pd.Series indexed by date.</p>
-<p>:param value: The starting capital for the position.
-:param stock_df: The DataFrame representing the stock's historical price.
-:param pos_type: The position type to calculate for.
-:return: pd.Series</p>
+        <p>Calculate the position's performance based on the provided stock DataFrame and position type.</p>
+<p>This function computes the daily position value and returns a pd.Series indexed by date that reflects the performance of the position.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>value</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The starting capital for the position.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>stock_df</code>
+            </td>
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A DataFrame containing the stock's historical price data.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>pos_type</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The type of position to calculate (e.g., long, short).</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="pandas.Series">Series</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>pd.Series: A Series representing the position's value for each day, indexed by date.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
             <details class="quote">
               <summary>Source code in <code>financialcalc\positions.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">32</span>
-<span class="normal">33</span>
-<span class="normal">34</span>
-<span class="normal">35</span>
-<span class="normal">36</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">36</span>
 <span class="normal">37</span>
 <span class="normal">38</span>
 <span class="normal">39</span>
@@ -596,17 +746,27 @@ position value every day, represented by a pd.Series indexed by date.</p>
 <span class="normal">61</span>
 <span class="normal">62</span>
 <span class="normal">63</span>
-<span class="normal">64</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">calculate_position_daily</span><span class="p">(</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">calculate_position_daily</span><span class="p">(</span>
     <span class="n">value</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">stock_df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">pos_type</span><span class="p">:</span> <span class="n">PositionType</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Given a stock&#39;s DataFrame and position type, calculate the position&#39;s performance, in terms of</span>
-<span class="sd">    position value every day, represented by a pd.Series indexed by date.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate the position&#39;s performance based on the provided stock DataFrame and position type.</span>
 
-<span class="sd">    :param value: The starting capital for the position.</span>
-<span class="sd">    :param stock_df: The DataFrame representing the stock&#39;s historical price.</span>
-<span class="sd">    :param pos_type: The position type to calculate for.</span>
-<span class="sd">    :return: pd.Series</span>
+<span class="sd">    This function computes the daily position value and returns a pd.Series indexed by date that reflects the performance of the position.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        value (float): The starting capital for the position.</span>
+<span class="sd">        stock_df (pd.DataFrame): A DataFrame containing the stock&#39;s historical price data.</span>
+<span class="sd">        pos_type (str): The type of position to calculate (e.g., long, short).</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        pd.Series: A Series representing the position&#39;s value for each day, indexed by date.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">position_value</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">stock_df</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
