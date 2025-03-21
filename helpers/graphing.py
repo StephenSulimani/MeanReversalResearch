@@ -4,7 +4,16 @@ import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 import pandas as pd
 
+
 def pretty_line_chart(series_one, series_two, *args):
+    """
+    Graphs two series against each other on the same timeframe. Can also graph variable number of other
+    series over the same timeframe if desired.
+    :param series_one: The first series to be graphed
+    :param series_two: The second series to be graphed
+    :param args: Variable number of series to be graphed
+    :return: None
+    """
     plt.figure(figsize=(16,10), dpi=80)
     plt.plot(series_one.index, series_one.values, color='tab:red', label="Mean Reversal Portfolio")
     plt.plot(series_two.index, series_two.values, color='blue', label = "SPY")  # New line to plot series_two in blue
@@ -45,14 +54,12 @@ def pretty_line_chart(series_one, series_two, *args):
 
 def import_and_filter_csv(path_to_csv):
     """
-    Imports a CSV file and filters the data for dates between Jan 1, 2020 and Dec 31, 2024.
-
-    Parameters:
-        path_to_csv (str): The path to the CSV file.
-
-    Returns:
-        pd.DataFrame: A DataFrame containing only the data within the specified date range.
+    Imports a CSV file and filters the data for specific dates.
+    (Not deprecated, but being updated to include filtered data ranges as parameters)
+    :param path_to_csv: The path to the CSV file
+    :return: filtered_df: A DataFrame containing only the data within the specified date range.
     """
+
     # Read the CSV file and parse the "Date" column as datetime
     df = pd.read_csv(path_to_csv, parse_dates=["Date"])
 
@@ -81,13 +88,10 @@ def import_and_filter_csv(path_to_csv):
 def df_to_close_series(df):
     """
     Converts a DataFrame to a date-indexed Series containing only the 'Close' values.
-
-    Parameters:
-        df (pd.DataFrame): DataFrame that contains at least 'Date' and 'Close' columns.
-
-    Returns:
-        pd.Series: A series with dates as the index and 'Close' values.
+    :param df: DataFrame that contains at least 'Date' and 'Close' columns.
+    :return: A series with dates as the index and 'Close' values.
     """
+
     # Ensure a copy is made so the original DataFrame isn't modified
     df_copy = df.copy()
 
