@@ -1,0 +1,1622 @@
+[
+    {
+        "lookback": {
+            "start": "2020-01-01",
+            "end": "2020-03-31"
+        },
+        "test": {
+            "start": "2020-04-01",
+            "end": "2020-04-30"
+        },
+        "best_stocks": [
+            "CARR",
+            "SBAC",
+            "NEM",
+            "MSCI",
+            "DPZ",
+            "MPWR",
+            "TSLA",
+            "OTIS",
+            "DXCM",
+            "NFLX",
+            "MRNA"
+        ],
+        "worst_stocks": [
+            "BA",
+            "SPG",
+            "APA",
+            "DFS",
+            "TPR",
+            "HAL",
+            "CNP",
+            "NCLH",
+            "ALGN",
+            "PARA",
+            "CTVA"
+        ]
+    },
+    {
+        "lookback": {
+            "start": "2020-02-01",
+            "end": "2020-04-30"
+        },
+        "test": {
+            "start": "2020-05-01",
+            "end": "2020-05-31"
+        },
+        "best_stocks": [
+            "CARR",
+            "SBAC",
+            "EQT",
+            "MKTX",
+            "DPZ",
+            "MPWR",
+            "ENPH",
+            "MOH",
+            "DXCM",
+            "AMZN",
+            "MRNA"
+        ],
+        "worst_stocks": [
+            "BA",
+            "SPG",
+            "TRGP",
+            "AIG",
+            "TPR",
+            "RTX",
+            "GE",
+            "NCLH",
+            "HSIC",
+            "PARA",
+            "CTVA"
+        ]
+    },
+    {
+        "lookback": {
+            "start": "2020-03-01",
+            "end": "2020-05-31"
+        },
+        "test": {
+            "start": "2020-06-01",
+            "end": "2020-06-30"
+        },
+        "best_stocks": [
+            "CARR",
+            "SBAC",
+            "EQT",
+            "MKTX",
+            "TSCO",
+            "CDNS",
+            "ENPH",
+            "MOH",
+            "CTLT",
+            "AMZN",
+            "MRNA"
+        ],
+        "worst_stocks": [
+            "BA",
+            "SPG",
+            "OXY",
+            "IVZ",
+            "TPR",
+            "HWM",
+            "GE",
+            "NCLH",
+            "FTV",
+            "OMC",
+            "BIIB"
+        ]
+    },
+    {
+        "lookback": {
+            "start": "2020-04-01",
+            "end": "2020-06-30"
+        },
+        "test": {
+            "start": "2020-07-01",
+            "end": "2020-07-31"
+        },
+        "best_stocks": [
+            "CRWD",
+            "LEN",
+            "TRGP",
+            "AMP",
+            "LULU",
+            "HAL",
+            "TSLA",
+            "CZR",
+            "ALGN",
+            "PARA",
+            "MRNA"
+        ],
+        "worst_stocks": [
+            "LHX",
+            "PSA",
+            "CTRA",
+            "CINF",
+            "TAP",
+            "RTX",
+            "ED",
+            "CME",
+            "EW",
+            "VZ",
+            "BIIB"
+        ]
+    },
+    {
+        "lookback": {
+            "start": "2020-05-01",
+            "end": "2020-07-31"
+        },
+        "test": {
+            "start": "2020-08-01",
+            "end": "2020-08-31"
+        },
+        "best_stocks": [
+            "CRWD",
+            "PHM",
+            "TRGP",
+            "AJG",
+            "LULU",
+            "LRCX",
+            "TSLA",
+            "CZR",
+            "IDXX",
+            "PARA",
+            "MRNA"
+        ],
+        "worst_stocks": [
+            "INTC",
+            "EQR",
+            "CTRA",
+            "WFC",
+            "TPR",
+            "RTX",
+            "FE",
+            "WYNN",
+            "EW",
+            "OMC",
+            "GILD"
+        ]
+    },
+    {
+        "lookback": {
+            "start": "2020-06-01",
+            "end": "2020-08-31"
+        },
+        "test": {
+            "start": "2020-09-01",
+            "end": "2020-09-30"
+        },
+        "best_stocks": [
+            "CRM",
+            "WY",
+            "FCX",
+            "CINF",
+            "BBY",
+            "AMD",
+            "GNRC",
+            "FDX",
+            "WST",
+            "AMZN",
+            "PODD"
+        ],
+        "worst_stocks": [
+            "INTC",
+            "REG",
+            "OKE",
+            "CBOE",
+            "RL",
+            "HII",
+            "TSLA",
+            "CI",
+            "WBA",
+            "AAPL",
+            "GILD"
+        ]
+    },
+    {
+        "lookback": {
+            "start": "2020-07-01",
+            "end": "2020-09-30"
+        },
+        "test": {
+            "start": "2020-10-01",
+            "end": "2020-10-31"
+        },
+        "best_stocks": [
+            "NVDA",
+            "DHI",
+            "MOS",
+            "CPRT",
+            "DRI",
+            "BLDR",
+            "ENPH",
+            "FDX",
+            "RVTY",
+            "CHTR",
+            "PODD"
+        ],
+        "worst_stocks": [
+            "FTNT",
+            "REG",
+            "OXY",
+            "C",
+            "KHC",
+            "HII",
+            "TSLA",
+            "CI",
+            "WBA",
+            "AAPL",
+            "GILD"
+        ]
+    },
+    {
+        "lookback": {
+            "start": "2020-08-01",
+            "end": "2020-10-31"
+        },
+        "test": {
+            "start": "2020-11-01",
+            "end": "2020-11-30"
+        },
+        "best_stocks": [
+            "PWR",
+            "PSA",
+            "MOS",
+            "DFS",
+            "TPR",
+            "MHK",
+            "ENPH",
+            "FDX",
+            "ALGN",
+            "PARA",
+            "CTVA"
+        ],
+        "worst_stocks": [
+            "SMCI",
+            "BXP",
+            "APA",
+            "JKHY",
+            "KHC",
+            "SLB",
+            "TSLA",
+            "CPAY",
+            "DXCM",
+            "AAPL",
+            "VRTX"
+        ]
+    },
+    {
+        "lookback": {
+            "start": "2020-09-01",
+            "end": "2020-11-30"
+        },
+        "test": {
+            "start": "2020-12-01",
+            "end": "2020-12-31"
+        },
+        "best_stocks": [
+            "PLTR",
+            "HST",
+            "FCX",
+            "IVZ",
+            "TPR",
+            "AXON",
+            "ENPH",
+            "GM",
+            "ALGN",
+            "PARA",
+            "MRNA"
+        ],
+        "worst_stocks": [
+            "GEN",
+            "AMT",
+            "APA",
+            "PGR",
+            "MKC",
+            "MAS",
+            "NEE",
+            "KMX",
+            "DXCM",
+            "NFLX",
+            "VRTX"
+        ]
+    },
+    {
+        "lookback": {
+            "start": "2020-10-01",
+            "end": "2020-12-31"
+        },
+        "test": {
+            "start": "2021-01-01",
+            "end": "2021-01-31"
+        },
+        "best_stocks": [
+            "PLTR",
+            "HST",
+            "TRGP",
+            "IVZ",
+            "TPR",
+            "HAL",
+            "ENPH",
+            "WYNN",
+            "ALGN",
+            "DIS",
+            "MRNA"
+        ],
+        "worst_stocks": [
+            "CRM",
+            "DHI",
+            "APD",
+            "SPGI",
+            "MKC",
+            "ORLY",
+            "NEE",
+            "ROL",
+            "DXCM",
+            "VZ",
+            "REGN"
+        ]
+    },
+    {
+        "lookback": {
+            "start": "2020-11-01",
+            "end": "2021-01-31"
+        },
+        "test": {
+            "start": "2021-02-01",
+            "end": "2021-02-28"
+        },
+        "best_stocks": [
+            "PLTR",
+            "KIM",
+            "OXY",
+            "IVZ",
+            "RL",
+            "AXON",
+            "TSLA",
+            "CZR",
+            "WBA",
+            "WBD",
+            "MRNA"
+        ],
+        "worst_stocks": [
+            "LMT",
+            "SBAC",
+            "NEM",
+            "PGR",
+            "MKC",
+            "NDSN",
+            "LNT",
+            "ROL",
+            "PG",
+            "VZ",
+            "REGN"
+        ]
+    },
+    {
+        "lookback": {
+            "start": "2020-12-01",
+            "end": "2021-02-28"
+        },
+        "test": {
+            "start": "2021-03-01",
+            "end": "2021-03-31"
+        },
+        "best_stocks": [
+            "CRWD",
+            "SPG",
+            "MRO",
+            "GS",
+            "TPR",
+            "AMAT",
+            "GNRC",
+            "ABNB",
+            "WBA",
+            "WBD",
+            "LLY"
+        ],
+        "worst_stocks": [
+            "LDOS",
+            "SBAC",
+            "FMC",
+            "VRSK",
+            "LULU",
+            "PPG",
+            "ETR",
+            "ROL",
+            "CL",
+            "META",
+            "PFE"
+        ]
+    },
+    {
+        "lookback": {
+            "start": "2021-01-01",
+            "end": "2021-03-31"
+        },
+        "test": {
+            "start": "2021-04-01",
+            "end": "2021-04-30"
+        },
+        "best_stocks": [
+            "HPE",
+            "SPG",
+            "MRO",
+            "IVZ",
+            "TSCO",
+            "AMAT",
+            "GNRC",
+            "F",
+            "IFF",
+            "WBD",
+            "CTVA"
+        ],
+        "worst_stocks": [
+            "PAYC",
+            "ARE",
+            "NEM",
+            "VRSK",
+            "LULU",
+            "APH",
+            "FSLR",
+            "DAY",
+            "VTRS",
+            "TTWO",
+            "VRTX"
+        ]
+    },
+    {
+        "lookback": {
+            "start": "2021-02-01",
+            "end": "2021-04-30"
+        },
+        "test": {
+            "start": "2021-05-01",
+            "end": "2021-05-31"
+        },
+        "best_stocks": [
+            "HPQ",
+            "REG",
+            "MRO",
+            "WFC",
+            "TPR",
+            "NUE",
+            "GNRC",
+            "CCL",
+            "IQV",
+            "NWSA",
+            "CTVA"
+        ],
+        "worst_stocks": [
+            "PLTR",
+            "ARE",
+            "CTRA",
+            "MKTX",
+            "NKE",
+            "SHW",
+            "ENPH",
+            "ERIE",
+            "VTRS",
+            "PARA",
+            "LLY"
+        ]
+    },
+    {
+        "lookback": {
+            "start": "2021-03-01",
+            "end": "2021-05-31"
+        },
+        "test": {
+            "start": "2021-06-01",
+            "end": "2021-06-30"
+        },
+        "best_stocks": [
+            "GEN",
+            "PHM",
+            "NEM",
+            "EFX",
+            "TAP",
+            "NUE",
+            "CNP",
+            "EXPD",
+            "ELV",
+            "IPG",
+            "MRNA"
+        ],
+        "worst_stocks": [
+            "TYL",
+            "HST",
+            "CTRA",
+            "MKTX",
+            "CMG",
+            "SHW",
+            "ENPH",
+            "ABNB",
+            "HOLX",
+            "WBD",
+            "LLY"
+        ]
+    },
+    {
+        "lookback": {
+            "start": "2021-04-01",
+            "end": "2021-06-30"
+        },
+        "test": {
+            "start": "2021-07-01",
+            "end": "2021-07-31"
+        },
+        "best_stocks": [
+            "NVDA",
+            "EXR",
+            "TRGP",
+            "EFX",
+            "DPZ",
+            "POOL",
+            "GNRC",
+            "F",
+            "IDXX",
+            "ADBE",
+            "MRNA"
+        ],
+        "worst_stocks": [
+            "INTC",
+            "WY",
+            "CTRA",
+            "CSGP",
+            "DLTR",
+            "CSX",
+            "PCG",
+            "ABNB",
+            "CTSH",
+            "WBD",
+            "VRTX"
+        ]
+    },
+    {
+        "lookback": {
+            "start": "2021-05-01",
+            "end": "2021-07-31"
+        },
+        "test": {
+            "start": "2021-08-01",
+            "end": "2021-08-31"
+        },
+        "best_stocks": [
+            "IT",
+            "CPT",
+            "ALB",
+            "BX",
+            "CMG",
+            "AMD",
+            "ENPH",
+            "HCA",
+            "RVTY",
+            "ADBE",
+            "MRNA"
+        ],
+        "worst_stocks": [
+            "NVDA",
+            "WY",
+            "VLO",
+            "CSGP",
+            "LW",
+            "CSX",
+            "PCG",
+            "LVS",
+            "WBA",
+            "WBD",
+            "CTVA"
+        ]
+    },
+    {
+        "lookback": {
+            "start": "2021-06-01",
+            "end": "2021-08-31"
+        },
+        "test": {
+            "start": "2021-09-01",
+            "end": "2021-09-30"
+        },
+        "best_stocks": [
+            "PAYC",
+            "EXR",
+            "ALB",
+            "MSCI",
+            "CMG",
+            "MPWR",
+            "GE",
+            "DAY",
+            "DXCM",
+            "ADBE",
+            "MRNA"
+        ],
+        "worst_stocks": [
+            "NVDA",
+            "PHM",
+            "HES",
+            "CSGP",
+            "LW",
+            "CSX",
+            "DTE",
+            "WYNN",
+            "CNC",
+            "NWSA",
+            "INCY"
+        ]
+    },
+    {
+        "lookback": {
+            "start": "2021-07-01",
+            "end": "2021-09-30"
+        },
+        "test": {
+            "start": "2021-10-01",
+            "end": "2021-10-31"
+        },
+        "best_stocks": [
+            "PAYC",
+            "CPT",
+            "ALB",
+            "BX",
+            "CMG",
+            "MPWR",
+            "GE",
+            "DAY",
+            "DXCM",
+            "NFLX",
+            "MRNA"
+        ],
+        "worst_stocks": [
+            "NVDA",
+            "PHM",
+            "PSX",
+            "RJF",
+            "LW",
+            "PPG",
+            "ENPH",
+            "LVS",
+            "CNC",
+            "WBD",
+            "BIIB"
+        ]
+    },
+    {
+        "lookback": {
+            "start": "2021-08-01",
+            "end": "2021-10-31"
+        },
+        "test": {
+            "start": "2021-11-01",
+            "end": "2021-11-30"
+        },
+        "best_stocks": [
+            "PAYC",
+            "SPG",
+            "DVN",
+            "BAC",
+            "LOW",
+            "BLDR",
+            "TSLA",
+            "ODFL",
+            "DXCM",
+            "NFLX",
+            "PODD"
+        ],
+        "worst_stocks": [
+            "FICO",
+            "PHM",
+            "FMC",
+            "RJF",
+            "LW",
+            "MCHP",
+            "PNW",
+            "UHS",
+            "ISRG",
+            "WBD",
+            "BIIB"
+        ]
+    },
+    {
+        "lookback": {
+            "start": "2021-09-01",
+            "end": "2021-11-30"
+        },
+        "test": {
+            "start": "2021-12-01",
+            "end": "2021-12-31"
+        },
+        "best_stocks": [
+            "NVDA",
+            "SPG",
+            "DVN",
+            "INTU",
+            "DLTR",
+            "AMD",
+            "TSLA",
+            "F",
+            "CNC",
+            "LYV",
+            "PFE"
+        ],
+        "worst_stocks": [
+            "ANET",
+            "VTR",
+            "LYB",
+            "RJF",
+            "IP",
+            "MCHP",
+            "NRG",
+            "PYPL",
+            "ISRG",
+            "PARA",
+            "BIIB"
+        ]
+    },
+    {
+        "lookback": {
+            "start": "2021-10-01",
+            "end": "2021-12-31"
+        },
+        "test": {
+            "start": "2022-01-01",
+            "end": "2022-01-31"
+        },
+        "best_stocks": [
+            "QCOM",
+            "EXR",
+            "AOS",
+            "BRO",
+            "DLTR",
+            "BLDR",
+            "TSLA",
+            "F",
+            "CNC",
+            "AAPL",
+            "PFE"
+        ],
+        "worst_stocks": [
+            "ANET",
+            "VTR",
+            "CTRA",
+            "GPN",
+            "IP",
+            "MCHP",
+            "GNRC",
+            "PYPL",
+            "ISRG",
+            "PARA",
+            "MRNA"
+        ]
+    },
+    {
+        "lookback": {
+            "start": "2021-11-01",
+            "end": "2022-01-31"
+        },
+        "test": {
+            "start": "2022-02-01",
+            "end": "2022-02-28"
+        },
+        "best_stocks": [
+            "QCOM",
+            "WY",
+            "APA",
+            "MA",
+            "MKC",
+            "HAL",
+            "NI",
+            "AFL",
+            "MCK",
+            "AAPL",
+            "VRTX"
+        ],
+        "worst_stocks": [
+            "ANET",
+            "TROW",
+            "ALB",
+            "MSCI",
+            "LULU",
+            "MPWR",
+            "GNRC",
+            "DAY",
+            "DXCM",
+            "NFLX",
+            "MRNA"
+        ]
+    },
+    {
+        "lookback": {
+            "start": "2021-12-01",
+            "end": "2022-02-28"
+        },
+        "test": {
+            "start": "2022-03-01",
+            "end": "2022-03-31"
+        },
+        "best_stocks": [
+            "LMT",
+            "HST",
+            "MOS",
+            "MTB",
+            "LW",
+            "HAL",
+            "SRE",
+            "AXP",
+            "MCK",
+            "OMC",
+            "ABBV"
+        ],
+        "worst_stocks": [
+            "EPAM",
+            "TROW",
+            "ALB",
+            "INTU",
+            "LULU",
+            "ZBRA",
+            "ENPH",
+            "PYPL",
+            "DXCM",
+            "NFLX",
+            "MRNA"
+        ]
+    },
+    {
+        "lookback": {
+            "start": "2022-01-01",
+            "end": "2022-03-31"
+        },
+        "test": {
+            "start": "2022-04-01",
+            "end": "2022-04-30"
+        },
+        "best_stocks": [
+            "LMT",
+            "VTR",
+            "OXY",
+            "CINF",
+            "KR",
+            "HAL",
+            "SRE",
+            "AIZ",
+            "MCK",
+            "PARA",
+            "CTVA"
+        ],
+        "worst_stocks": [
+            "EPAM",
+            "DHI",
+            "AOS",
+            "SYF",
+            "HD",
+            "MHK",
+            "EXC",
+            "PYPL",
+            "ALGN",
+            "NFLX",
+            "MRNA"
+        ]
+    },
+    {
+        "lookback": {
+            "start": "2022-02-01",
+            "end": "2022-04-30"
+        },
+        "test": {
+            "start": "2022-05-01",
+            "end": "2022-05-31"
+        },
+        "best_stocks": [
+            "NOC",
+            "HST",
+            "EQT",
+            "JKHY",
+            "KR",
+            "STLD",
+            "SRE",
+            "AIZ",
+            "MCK",
+            "OMC",
+            "CTVA"
+        ],
+        "worst_stocks": [
+            "EPAM",
+            "BEN",
+            "KKR",
+            "BK",
+            "DPZ",
+            "SWK",
+            "GE",
+            "PYPL",
+            "ALGN",
+            "NFLX",
+            "MRNA"
+        ]
+    },
+    {
+        "lookback": {
+            "start": "2022-03-01",
+            "end": "2022-05-31"
+        },
+        "test": {
+            "start": "2022-06-01",
+            "end": "2022-06-30"
+        },
+        "best_stocks": [
+            "EPAM",
+            "HST",
+            "EQT",
+            "PGR",
+            "IP",
+            "HAL",
+            "CEG",
+            "ULTA",
+            "MCK",
+            "EA",
+            "LLY"
+        ],
+        "worst_stocks": [
+            "BA",
+            "SPG",
+            "FCX",
+            "MKTX",
+            "TGT",
+            "AXON",
+            "GNRC",
+            "CZR",
+            "ALGN",
+            "NFLX",
+            "PODD"
+        ]
+    },
+    {
+        "lookback": {
+            "start": "2022-04-01",
+            "end": "2022-06-30"
+        },
+        "test": {
+            "start": "2022-07-01",
+            "end": "2022-07-31"
+        },
+        "best_stocks": [
+            "IBM",
+            "VICI",
+            "VLO",
+            "WRB",
+            "LW",
+            "AZO",
+            "WEC",
+            "CI",
+            "MRK",
+            "VZ",
+            "LLY"
+        ],
+        "worst_stocks": [
+            "FTNT",
+            "BXP",
+            "FCX",
+            "IVZ",
+            "TGT",
+            "AXON",
+            "TSLA",
+            "RCL",
+            "DXCM",
+            "AMZN",
+            "PODD"
+        ]
+    },
+    {
+        "lookback": {
+            "start": "2022-05-01",
+            "end": "2022-07-31"
+        },
+        "test": {
+            "start": "2022-08-01",
+            "end": "2022-08-31"
+        },
+        "best_stocks": [
+            "SMCI",
+            "VICI",
+            "ALB",
+            "NDAQ",
+            "LW",
+            "CDNS",
+            "ENPH",
+            "ERIE",
+            "CTLT",
+            "NFLX",
+            "MRNA"
+        ],
+        "worst_stocks": [
+            "FTNT",
+            "BXP",
+            "NEM",
+            "CINF",
+            "TGT",
+            "SWK",
+            "PCG",
+            "RCL",
+            "DXCM",
+            "GOOG",
+            "REGN"
+        ]
+    },
+    {
+        "lookback": {
+            "start": "2022-06-01",
+            "end": "2022-08-31"
+        },
+        "test": {
+            "start": "2022-09-01",
+            "end": "2022-09-30"
+        },
+        "best_stocks": [
+            "EPAM",
+            "EXR",
+            "ALB",
+            "BR",
+            "DECK",
+            "AXON",
+            "FSLR",
+            "ERIE",
+            "CAH",
+            "NFLX",
+            "PODD"
+        ],
+        "worst_stocks": [
+            "FTNT",
+            "BXP",
+            "NEM",
+            "NDAQ",
+            "BALL",
+            "CE",
+            "TSLA",
+            "CCL",
+            "DXCM",
+            "GOOG",
+            "PFE"
+        ]
+    },
+    {
+        "lookback": {
+            "start": "2022-07-01",
+            "end": "2022-09-30"
+        },
+        "test": {
+            "start": "2022-10-01",
+            "end": "2022-10-31"
+        },
+        "best_stocks": [
+            "SMCI",
+            "HST",
+            "ALB",
+            "CSGP",
+            "DECK",
+            "ON",
+            "FSLR",
+            "UBER",
+            "CAH",
+            "NFLX",
+            "BIIB"
+        ],
+        "worst_stocks": [
+            "PANW",
+            "VTR",
+            "NEM",
+            "NDAQ",
+            "BALL",
+            "SWK",
+            "TSLA",
+            "FDX",
+            "CTLT",
+            "GOOG",
+            "MRNA"
+        ]
+    },
+    {
+        "lookback": {
+            "start": "2022-08-01",
+            "end": "2022-10-31"
+        },
+        "test": {
+            "start": "2022-11-01",
+            "end": "2022-11-30"
+        },
+        "best_stocks": [
+            "SMCI",
+            "HST",
+            "COP",
+            "ACGL",
+            "ROST",
+            "SLB",
+            "FSLR",
+            "RCL",
+            "DXCM",
+            "NFLX",
+            "BIIB"
+        ],
+        "worst_stocks": [
+            "PANW",
+            "WELL",
+            "KKR",
+            "NDAQ",
+            "BALL",
+            "AMD",
+            "TSLA",
+            "MTCH",
+            "CTLT",
+            "META",
+            "PFE"
+        ]
+    },
+    {
+        "lookback": {
+            "start": "2022-09-01",
+            "end": "2022-11-30"
+        },
+        "test": {
+            "start": "2022-12-01",
+            "end": "2022-12-31"
+        },
+        "best_stocks": [
+            "SMCI",
+            "DHI",
+            "FCX",
+            "ACGL",
+            "ROST",
+            "AXON",
+            "FSLR",
+            "RCL",
+            "DXCM",
+            "NFLX",
+            "BIIB"
+        ],
+        "worst_stocks": [
+            "PANW",
+            "EXR",
+            "EQT",
+            "CPRT",
+            "CHRW",
+            "ZBRA",
+            "GNRC",
+            "KMX",
+            "TECH",
+            "META",
+            "PFE"
+        ]
+    },
+    {
+        "lookback": {
+            "start": "2022-10-01",
+            "end": "2022-12-31"
+        },
+        "test": {
+            "start": "2023-01-01",
+            "end": "2023-01-31"
+        },
+        "best_stocks": [
+            "BA",
+            "SPG",
+            "BKR",
+            "ACGL",
+            "NKE",
+            "HAL",
+            "GE",
+            "UHS",
+            "ISRG",
+            "OMC",
+            "MRNA"
+        ],
+        "worst_stocks": [
+            "CRWD",
+            "EXR",
+            "ALB",
+            "CPRT",
+            "CMG",
+            "POOL",
+            "TSLA",
+            "ABNB",
+            "TECH",
+            "AMZN",
+            "VRTX"
+        ]
+    },
+    {
+        "lookback": {
+            "start": "2022-11-01",
+            "end": "2023-01-31"
+        },
+        "test": {
+            "start": "2023-02-01",
+            "end": "2023-02-28"
+        },
+        "best_stocks": [
+            "BA",
+            "PHM",
+            "FCX",
+            "MKTX",
+            "TPR",
+            "URI",
+            "FSLR",
+            "WYNN",
+            "ALGN",
+            "META",
+            "MRNA"
+        ],
+        "worst_stocks": [
+            "CRWD",
+            "EXR",
+            "CF",
+            "CPRT",
+            "K",
+            "HII",
+            "ENPH",
+            "ROL",
+            "TECH",
+            "HAS",
+            "PFE"
+        ]
+    },
+    {
+        "lookback": {
+            "start": "2022-12-01",
+            "end": "2023-02-28"
+        },
+        "test": {
+            "start": "2023-03-01",
+            "end": "2023-03-31"
+        },
+        "best_stocks": [
+            "NVDA",
+            "PHM",
+            "LYB",
+            "MKTX",
+            "LW",
+            "BLDR",
+            "GNRC",
+            "WYNN",
+            "ALGN",
+            "META",
+            "REGN"
+        ],
+        "worst_stocks": [
+            "AKAM",
+            "SBAC",
+            "DVN",
+            "NDAQ",
+            "DPZ",
+            "PCAR",
+            "ENPH",
+            "MOH",
+            "BAX",
+            "EA",
+            "MRNA"
+        ]
+    },
+    {
+        "lookback": {
+            "start": "2023-01-01",
+            "end": "2023-03-31"
+        },
+        "test": {
+            "start": "2023-04-01",
+            "end": "2023-04-30"
+        },
+        "best_stocks": [
+            "NVDA",
+            "PHM",
+            "MPC",
+            "MKTX",
+            "CMG",
+            "AMD",
+            "TSLA",
+            "ABNB",
+            "ALGN",
+            "META",
+            "REGN"
+        ],
+        "worst_stocks": [
+            "GEN",
+            "BXP",
+            "APA",
+            "SCHW",
+            "MNST",
+            "PCAR",
+            "ENPH",
+            "CI",
+            "CNC",
+            "HAS",
+            "PFE"
+        ]
+    },
+    {
+        "lookback": {
+            "start": "2023-02-01",
+            "end": "2023-04-30"
+        },
+        "test": {
+            "start": "2023-05-01",
+            "end": "2023-05-31"
+        },
+        "best_stocks": [
+            "NVDA",
+            "PHM",
+            "LIN",
+            "ACGL",
+            "CMG",
+            "BLDR",
+            "GE",
+            "ROL",
+            "WST",
+            "META",
+            "LLY"
+        ],
+        "worst_stocks": [
+            "GEN",
+            "BXP",
+            "ALB",
+            "KEY",
+            "MNST",
+            "PCAR",
+            "ENPH",
+            "MTCH",
+            "VTRS",
+            "LYV",
+            "MRNA"
+        ]
+    },
+    {
+        "lookback": {
+            "start": "2023-03-01",
+            "end": "2023-05-31"
+        },
+        "test": {
+            "start": "2023-06-01",
+            "end": "2023-06-30"
+        },
+        "best_stocks": [
+            "SMCI",
+            "PHM",
+            "MLM",
+            "CPRT",
+            "CMG",
+            "AMD",
+            "GE",
+            "UBER",
+            "ISRG",
+            "META",
+            "LLY"
+        ],
+        "worst_stocks": [
+            "APTV",
+            "BXP",
+            "MOS",
+            "KEY",
+            "MNST",
+            "STLD",
+            "AES",
+            "ULTA",
+            "CTLT",
+            "PARA",
+            "INCY"
+        ]
+    },
+    {
+        "lookback": {
+            "start": "2023-04-01",
+            "end": "2023-06-30"
+        },
+        "test": {
+            "start": "2023-07-01",
+            "end": "2023-07-31"
+        },
+        "best_stocks": [
+            "SMCI",
+            "PHM",
+            "VMC",
+            "CSGP",
+            "TAP",
+            "BLDR",
+            "GNRC",
+            "CCL",
+            "ISRG",
+            "META",
+            "LLY"
+        ],
+        "worst_stocks": [
+            "EPAM",
+            "CCI",
+            "MOS",
+            "MKTX",
+            "TGT",
+            "MTD",
+            "ENPH",
+            "ULTA",
+            "CTLT",
+            "PARA",
+            "MRNA"
+        ]
+    },
+    {
+        "lookback": {
+            "start": "2023-05-01",
+            "end": "2023-07-31"
+        },
+        "test": {
+            "start": "2023-08-01",
+            "end": "2023-08-31"
+        },
+        "best_stocks": [
+            "SMCI",
+            "PHM",
+            "VMC",
+            "SCHW",
+            "DPZ",
+            "BLDR",
+            "TSLA",
+            "CCL",
+            "FTV",
+            "ADBE",
+            "LLY"
+        ],
+        "worst_stocks": [
+            "EPAM",
+            "SBAC",
+            "FMC",
+            "MKTX",
+            "EL",
+            "MTD",
+            "XEL",
+            "ULTA",
+            "HUM",
+            "PARA",
+            "INCY"
+        ]
+    },
+    {
+        "lookback": {
+            "start": "2023-06-01",
+            "end": "2023-08-31"
+        },
+        "test": {
+            "start": "2023-09-01",
+            "end": "2023-09-30"
+        },
+        "best_stocks": [
+            "CARR",
+            "BXP",
+            "APA",
+            "INTU",
+            "DPZ",
+            "URI",
+            "VST",
+            "ODFL",
+            "CTLT",
+            "CHTR",
+            "LLY"
+        ],
+        "worst_stocks": [
+            "KEYS",
+            "CCI",
+            "FMC",
+            "CPRT",
+            "GIS",
+            "AMD",
+            "SRE",
+            "VRSN",
+            "RMD",
+            "IPG",
+            "PODD"
+        ]
+    },
+    {
+        "lookback": {
+            "start": "2023-07-01",
+            "end": "2023-09-30"
+        },
+        "test": {
+            "start": "2023-10-01",
+            "end": "2023-10-31"
+        },
+        "best_stocks": [
+            "DELL",
+            "BXP",
+            "MPC",
+            "CBOE",
+            "PKG",
+            "HAL",
+            "VST",
+            "ERIE",
+            "HUM",
+            "CHTR",
+            "AMGN"
+        ],
+        "worst_stocks": [
+            "FTNT",
+            "CCI",
+            "FMC",
+            "CPRT",
+            "DG",
+            "RTX",
+            "SRE",
+            "CCL",
+            "RMD",
+            "IPG",
+            "PODD"
+        ]
+    },
+    {
+        "lookback": {
+            "start": "2023-08-01",
+            "end": "2023-10-31"
+        },
+        "test": {
+            "start": "2023-11-01",
+            "end": "2023-11-30"
+        },
+        "best_stocks": [
+            "DELL",
+            "WELL",
+            "MPC",
+            "PGR",
+            "DECK",
+            "JBL",
+            "VST",
+            "ERIE",
+            "HUM",
+            "T",
+            "LLY"
+        ],
+        "worst_stocks": [
+            "PAYC",
+            "DOC",
+            "FMC",
+            "CPRT",
+            "TPR",
+            "ON",
+            "SRE",
+            "CCL",
+            "ALGN",
+            "PARA",
+            "PODD"
+        ]
+    },
+    {
+        "lookback": {
+            "start": "2023-09-01",
+            "end": "2023-11-30"
+        },
+        "test": {
+            "start": "2023-12-01",
+            "end": "2023-12-29"
+        },
+        "best_stocks": [
+            "CRWD",
+            "CCI",
+            "KKR",
+            "ALL",
+            "DECK",
+            "CDNS",
+            "NRG",
+            "EXPE",
+            "CAH",
+            "EA",
+            "LLY"
+        ],
+        "worst_stocks": [
+            "PAYC",
+            "DOC",
+            "ALB",
+            "IVZ",
+            "SJM",
+            "ON",
+            "ENPH",
+            "MTCH",
+            "ALGN",
+            "HAS",
+            "MRNA"
+        ]
+    }
+]
