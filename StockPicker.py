@@ -20,11 +20,15 @@ Stephen Sulimani, University of Georgia
 2025
 """
 
+import json
 import os
 import sys
+from multiprocessing.pool import ThreadPool
+from threading import Lock
 from typing import Dict, List, Tuple, cast
 
 import pandas as pd
+from tqdm import tqdm
 
 from AlphaVantage import AlphaVantage
 
@@ -69,12 +73,19 @@ def calculate_return(stock_df: pd.DataFrame, start_date: str, end_date: str) -> 
 
     """
     try:
+        end_movement = 0
+        start_movement = 0
         start_dt = pd.to_datetime(start_date)
         end_dt = pd.to_datetime(end_date)
         while end_dt not in stock_df.index:
             end_dt -= pd.Timedelta(days=1)
+            end_movement += 1
         while start_dt not in stock_df.index:
             start_dt += pd.Timedelta(days=1)
+            start_movement += 1
+
+        if end_movement > 7 or start_movement > 7:
+            return None
 
         start_price = stock_df.loc[start_dt]["close"]
         end_price = stock_df.loc[end_dt]["close"]
@@ -84,7 +95,7 @@ def calculate_return(stock_df: pd.DataFrame, start_date: str, end_date: str) -> 
         return None
 
 
-def get_date_range(cluster_csv: str) -> Tuple[str, str]:
+def get_date_range(cluster_csv: str) -> Tuple[List[str], List[str]]:
     """
     Reads through the cluster csv and returns the start and end dates.
 
@@ -98,7 +109,31 @@ def get_date_range(cluster_csv: str) -> Tuple[str, str]:
     df["Date"] = pd.to_datetime(df["Date"], format="%Y-%m-%d")
     start_date = df["Date"].min()
     end_date = df["Date"].max()
-    return start_date, end_date
+
+    # Get an array of all of the months included in the range
+    first_months = []
+    last_months = []
+    first_days = []
+    last_days = []
+
+    all_dates = pd.date_range(start=start_date, end=end_date)
+
+    for i, date in enumerate(all_dates):
+        month = date.strftime("%Y-%m")
+        if month not in first_months:
+            first_months.append(month)
+            first_days.append(date.strftime("%Y-%m-%d"))
+        if i == len(all_dates) - 1:
+            last_months.append(month)
+            last_days.append(date.strftime("%Y-%m-%d"))
+            continue
+
+        next_day_month = all_dates[i + 1].strftime("%Y-%m")
+        if month != next_day_month:
+            last_months.append(month)
+            last_days.append(date.strftime("%Y-%m-%d"))
+
+    return first_days, last_days
 
 
 def get_sectors(cluster_csv: str) -> Dict:
@@ -129,7 +164,13 @@ def get_sectors(cluster_csv: str) -> Dict:
     return sectors
 
 
-def best_worst(tickers: List[str], n: int) -> Tuple[List[str], List[str]]:
+type Boundary = Tuple[pd.DatetimeIndex, pd.DatetimeIndex]
+type BoundaryList = List[Boundary]
+
+
+def best_worst(
+    tickers: List[str], n: int, date_range: pd.DatetimeIndex
+) -> Tuple[List[str], List[str]]:
     """
     Returns the best and worst performing stocks.
 
@@ -145,7 +186,9 @@ def best_worst(tickers: List[str], n: int) -> Tuple[List[str], List[str]]:
     for ticker in tickers:
         stock_df = load_stock_df(ticker)
         if stock_df is not None:
-            performance[ticker] = calculate_return(stock_df, start_date, end_date)
+            performance[ticker] = calculate_return(
+                stock_df, date_range[0].date(), date_range[-1].date()
+            )
 
     performance = {k: v for k, v in performance.items() if v is not None}
 
@@ -153,6 +196,30 @@ def best_worst(tickers: List[str], n: int) -> Tuple[List[str], List[str]]:
     worst = sorted(performance, key=performance.get)[:n]
 
     return best, worst
+
+
+def define_boundaries(
+    first_days: List[str], last_days: List[str], lookback_months: int
+) -> BoundaryList:
+    boundaries = []
+    i = lookback_months
+
+    while i < len(first_days):
+        boundaries.append(
+            (
+                pd.date_range(
+                    start=pd.to_datetime(first_days[i - lookback_months]),
+                    end=pd.to_datetime(last_days[i - 1]),
+                ),
+                pd.date_range(
+                    start=pd.to_datetime(first_days[i]),
+                    end=pd.to_datetime(last_days[i]),
+                ),
+            )
+        )
+        i += 1
+
+    return boundaries
 
 
 # if __name__ == "__main__":
@@ -169,21 +236,128 @@ def best_worst(tickers: List[str], n: int) -> Tuple[List[str], List[str]]:
 #     df = df.dropna()
 #     df.to_csv("venn.csv")
 
+
+def crunch_data(
+    boundary: Boundary, n: int, sectors: Dict, lock: Lock, pbar: tqdm
+) -> Dict:
+    lookback, test = boundary
+
+    best = []
+    worst = []
+
+    lock2 = Lock()
+
+    # pool = ThreadPool(5)
+
+    def crunch_sector(tickers: List[str]):
+        best_stocks, worst_stocks = best_worst(tickers, n, lookback)
+        with lock:
+            pbar.update(1)
+
+        return (best_stocks, worst_stocks)
+        with lock2:
+            best.extend(best_stocks)
+            worst.extend(worst_stocks)
+
+    # processed = pool.map_async(crunch_sector, list(sectors.values()))
+
+    # pool.close()
+    # pool.join()
+
+    # for best_stocks, worst_stocks in processed.get():
+    #     best.extend(best_stocks)
+    #     worst.extend(worst_stocks)
+
+    for _, tickers in sectors.items():
+        best_stocks, worst_stocks = crunch_sector(tickers)
+        best.extend(best_stocks)
+        worst.extend(worst_stocks)
+
+    return {
+        "lookback": {
+            "start": lookback[0].date().strftime("%Y-%m-%d"),
+            "end": lookback[-1].date().strftime("%Y-%m-%d"),
+        },
+        "test": {
+            "start": test[0].date().strftime("%Y-%m-%d"),
+            "end": test[-1].date().strftime("%Y-%m-%d"),
+        },
+        "best_stocks": best,
+        "worst_stocks": worst,
+    }
+
+    for _, tickers in sectors.items():
+        pool.apply_async(crunch_sector, args=(tickers,))
+        continue
+        with lock:
+            pbar.update(1)
+            print("sector done")
+        best_stocks, worst_stocks = best_worst(tickers, n, lookback)
+        best.extend(best_stocks)
+        worst.extend(worst_stocks)
+    pool.close()
+    pool.join()
+
+    return {
+        "lookback": {
+            "start": lookback[0].date().strftime("%Y-%m-%d"),
+            "end": lookback[-1].date().strftime("%Y-%m-%d"),
+        },
+        "test": {
+            "start": test[0].date().strftime("%Y-%m-%d"),
+            "end": test[-1].date().strftime("%Y-%m-%d"),
+        },
+        "best_stocks": best,
+        "worst_stocks": worst,
+    }
+
+
 if __name__ == "__main__":
     # stonk = load_stock_df("AAPL")
     # print(stonk.head())
     # stonk_return = calculate_return(stonk, "2022-01-01", "2023-01-01")
     # print(stonk_return)
-    if len(sys.argv) != 3:
-        print("Usage: python StockPicker.py <cluster_csv> <n>")
+    if len(sys.argv) != 5:
+        print("Usage: python StockPicker.py <cluster_csv> <n> <lookback_months> <output_json>")
         sys.exit(1)
 
     cluster_csv = sys.argv[1]
     n = int(sys.argv[2])
+    lookback_months = int(sys.argv[3])
+    output_filename = sys.argv[4]
 
-    start_date, end_date = get_date_range(cluster_csv)
+    if not output_filename.endswith(".json"):
+        output_filename += ".json"
 
-    print(start_date, end_date)
+    first_days, last_days = get_date_range(cluster_csv)
+
+    boundaries = define_boundaries(first_days, last_days, lookback_months)
+
+    sectors = get_sectors(cluster_csv)
+
+    pool = ThreadPool(50)
+
+    pbar = tqdm(total=len(boundaries) * len(sectors))
+
+    lock = Lock()
+
+    processed_data = pool.map_async(
+        lambda boundary: crunch_data(boundary, n, sectors, lock, pbar), boundaries
+    )
+
+    pool.close()
+    pool.join()
+    pbar.close()
+
+    complete_data = processed_data.get()
+
+    # Sort complete_data by lookback["start"]
+    complete_data = sorted(complete_data, key=lambda x: x["lookback"]["start"])
+
+    with open(output_filename, "w") as f:
+        json.dump(complete_data, f, indent=4)
+
+    sys.exit(1)
 
     sectors = get_sectors(cluster_csv)
 
