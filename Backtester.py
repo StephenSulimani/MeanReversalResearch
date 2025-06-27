@@ -17,9 +17,10 @@ def get_stock_price(ticker: str, date: pd.DatetimeIndex, backward=True) -> float
     return stock_df.loc[date]["close"]
 
 
-def run_backtest(portfolio_json, starting_capital):
+def run_backtest(portfolio_json, starting_capital, csv_filename):
     original_capital = starting_capital
     current_balance = starting_capital
+    output_df = pd.DataFrame(columns=["start_date", "end_date", "current_balance", "monthly_change"])
     for i, breakpoint in enumerate(portfolio_json):
         prev_balance = current_balance
         new_balance = current_balance
@@ -27,6 +28,15 @@ def run_backtest(portfolio_json, starting_capital):
         test_dates = breakpoint["test"]
         start_date = pd.to_datetime(test_dates["start"])
         end_date = pd.to_datetime(test_dates["end"])
+
+        if i == 0:
+            output_df = output_df._append({
+                'start_date': '--',
+                'end_date': (start_date - pd.Timedelta(days=1)).strftime("%Y-%m-%d"),
+                'current_balance': starting_capital,
+                'monthly_change': 0
+            }, ignore_index=True)
+
 
         for ticker, weight in breakpoint["weights"].items():
             weight = float(weight)
@@ -65,6 +75,16 @@ def run_backtest(portfolio_json, starting_capital):
         print(f"Starting Balance: {prev_balance}")
         print(f"New Balance: {current_balance}")
         print(f"Change %: {portfolio_json[i]['backtest']['change_pct']}")
+
+        output_df = output_df._append(
+                {
+                    "start_date": start_date.strftime("%Y-%m-%d"),
+                    "end_date": end_date.strftime("%Y-%m-%d"),
+                    "current_balance": current_balance,
+                    "monthly_change": portfolio_json[i]["backtest"]["change_pct"],
+                }, ignore_index=True
+        )
+        output_df.to_csv(csv_filename, index=False)
         print(f"Progress: {i + 1}/{len(portfolio_json)}")
         print()
     final_capital = current_balance
@@ -135,11 +155,12 @@ def old_run_backtest(portfolio_json, starting_capital):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 3:
-        print("Usage: python Backtester.py <json_file> <starting_capital>")
+    if len(sys.argv) != 4:
+        print("Usage: python Backtester.py <json_file> <starting_capital> <output_csv>")
         sys.exit(1)
 
     portfolio_json = json.load(open(sys.argv[1], "r"))
     starting_capital = float(sys.argv[2])
+    output_csv = sys.argv[3]
 
-    run_backtest(portfolio_json, starting_capital)
+    run_backtest(portfolio_json, starting_capital, output_csv)

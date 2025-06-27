@@ -51,6 +51,7 @@ def load_stock_df(ticker: str) -> pd.DataFrame | None:
         df["date"] = pd.to_datetime(df["date"], format="%Y-%m-%d")
         df.set_index("date", inplace=True)
         return df
+    return None
     df = AlphaVantage([]).time_series(ticker)
     if df is None:
         return None

@@ -132,6 +132,7 @@ class AlphaVantage:
         )
 
     def time_series(self, ticker: str) -> pd.DataFrame | None:
+        retries = 0
         while True:
             res = ""
             try:
@@ -163,5 +164,8 @@ class AlphaVantage:
 
                 return df
             except:
+                if retries > 3:
+                    return None
+                retries += 1
                 print(res)
                 print(ticker)
