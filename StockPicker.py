@@ -155,12 +155,15 @@ def get_sectors(cluster_csv: str) -> Dict:
     sectors = {}
 
     for column in df.columns:
-        sector = int(df.loc[end_date][column])
+        try:
+            sector = int(df.loc[end_date][column])
 
-        if sector not in sectors:
-            sectors[sector] = []
+            if sector not in sectors:
+                sectors[sector] = []
 
-        sectors[sector].append(column)
+            sectors[sector].append(column)
+        except:
+            pass
 
     return sectors
 
