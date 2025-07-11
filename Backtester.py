@@ -4,17 +4,43 @@ import sys
 import pandas as pd
 
 
-def get_stock_price(ticker: str, date: pd.DatetimeIndex, backward=True) -> float:
+def get_stock_price(ticker: str, date: pd.Timestamp, backward=True) -> float:
+    # 1) Load & index
     stock_df = pd.read_csv("data/" + ticker + ".csv", parse_dates=["date"])
     stock_df.set_index("date", inplace=True)
 
+    # 2) Drop duplicate dates (keep first) so loc[...] returns a single row
+    stock_df = stock_df[~stock_df.index.duplicated(keep="first")]
+
+    # 3) Determine your data bounds
+    min_date = stock_df.index.min()
+    max_date = stock_df.index.max()
+
+    # 4) Clamp the requested date into [min_date, max_date]
+    if date < min_date:
+        date = min_date
+    elif date > max_date:
+        date = max_date
+
+    # 5) Walk day‐by‐day until we hit an available date
     while date not in stock_df.index:
         if backward:
             date -= pd.Timedelta(days=1)
+            if date < min_date:
+                date = min_date
+                break
         else:
             date += pd.Timedelta(days=1)
+            if date > max_date:
+                date = max_date
+                break
 
-    return stock_df.loc[date]["close"]
+    # 6) Grab the close price (if you somehow still get a Series, take the first)
+    price = stock_df.loc[date, "close"]
+    if isinstance(price, pd.Series):
+        price = price.iloc[0]
+
+    return float(price)
 
 
 def run_backtest(portfolio_json, starting_capital, csv_filename):
