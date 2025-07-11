@@ -12,8 +12,8 @@ from pypfopt import risk_models
 # Step 0: Iterate over all time periods
 
 # Open and store the array in runs.json
-if os.path.exists("runs.json"):
-    with open("runs.json", "r") as file:
+if os.path.exists("AA_runs/cluster_returns_kmeans_3m_n3.json"):
+    with open("AA_runs/cluster_returns_kmeans_3m_n3.json", "r") as file:
         runs = json.load(file)
 else:
     runs = []
@@ -50,6 +50,8 @@ for i in range(0, len(runs)):
             # data = pd.read_csv(file_path, parse_dates=["Date"], index_col="Date")
             data = pd.read_csv(file_path, parse_dates=True, index_col="date")
             # Append the close price to the dataframe
+            # Drop any duplicate dates, keeping only the first occurrence
+            data = data.loc[~data.index.duplicated(keep="first")]
             prices[ticker] = data["close"]
         else:
             print(f"Data for {ticker} not found in {file_path}")
@@ -92,6 +94,9 @@ for i in range(0, len(runs)):
     expected_returns_vector = mu.values
     cov_matrix = sample_cov.loc[tickers, tickers].values
 
+    # Force CVXPY to treat it as PSD
+    cov_matrix = cp.psd_wrap(cov_matrix)
+
     lambda_risk_aversion = 0.02  # risk penalty (tune this)
     portfolio_return = expected_returns_vector @ w
     portfolio_risk = cp.quad_form(w, cov_matrix)
@@ -123,5 +128,5 @@ for i in range(0, len(runs)):
 #     # plt.show()
 
 # # Save the updated runs array back to weighted_runs.json
-with open("weighted_runs.json", "w") as file:
+with open("AA_runs/weighted_cluster_returns_kmeans_3m_n3.json", "w") as file:
     json.dump(runs, file, indent=4)
