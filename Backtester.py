@@ -65,14 +65,16 @@ def run_backtest(portfolio_json, starting_capital, csv_filename):
 
         weights_exist = breakpoint.get("weights", None)
         if weights_exist is None:
-            weight = 1.0 / len(breakpoint["best_stocks"])
+            weight = (1.0 / len(breakpoint["best_stocks"])) * -1.0
+            print(f"weight for best stocks: {weight}")
             for ticker in breakpoint["best_stocks"]:
                 price = get_stock_price(ticker, start_date, False)
                 holdings[ticker] = {
                     "amount": (current_balance * weight) / price,
                     "initial_price": price,
                 }
-            weight = (1.0 / len(breakpoint["worst_stocks"])) * -1.0
+            weight = (1.0 / len(breakpoint["worst_stocks"]))
+            print(f"weight for worst stocks: {weight}")
             for ticker in breakpoint["worst_stocks"]:
                 price = get_stock_price(ticker, start_date, False)
                 holdings[ticker] = {
@@ -99,7 +101,7 @@ def run_backtest(portfolio_json, starting_capital, csv_filename):
                 gross = amount * (end_price - initial_price)
                 new_balance += gross  # Long Position
             elif amount < 0:
-                gross = amount * (initial_price - end_price)
+                gross = abs(amount) * (initial_price - end_price)
                 new_balance += gross  # Short Position
 
         portfolio_json[i]["backtest"] = {
