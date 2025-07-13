@@ -11,4 +11,4 @@ output_backtest/
 cluster_returns/
 weighted_runs/
 run_backtester.sh
-
+*.csv
