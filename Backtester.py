@@ -63,15 +63,33 @@ def run_backtest(portfolio_json, starting_capital, csv_filename):
                 'monthly_change': 0
             }, ignore_index=True)
 
+        weights_exist = breakpoint.get("weights", None)
+        if weights_exist is None:
+            weight = 1.0 / len(breakpoint["best_stocks"])
+            for ticker in breakpoint["best_stocks"]:
+                price = get_stock_price(ticker, start_date, False)
+                holdings[ticker] = {
+                    "amount": (current_balance * weight) / price,
+                    "initial_price": price,
+                }
+            weight = (1.0 / len(breakpoint["worst_stocks"])) * -1.0
+            for ticker in breakpoint["worst_stocks"]:
+                price = get_stock_price(ticker, start_date, False)
+                holdings[ticker] = {
+                    "amount": (current_balance * weight) / price,
+                    "initial_price": price,
+                }
 
-        for ticker, weight in breakpoint["weights"].items():
-            weight = float(weight)
-            price = get_stock_price(ticker, start_date, False)
 
-            holdings[ticker] = {
-                "amount": (current_balance * weight) / price,
-                "initial_price": price,
-            }
+        else:
+            for ticker, weight in breakpoint["weights"].items():
+                weight = float(weight)
+                price = get_stock_price(ticker, start_date, False)
+
+                holdings[ticker] = {
+                    "amount": (current_balance * weight) / price,
+                    "initial_price": price,
+                }
 
         for ticker, info in holdings.items():
             amount = info["amount"]
