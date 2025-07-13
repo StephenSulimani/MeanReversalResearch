@@ -3,4 +3,12 @@ data/
 api_keys.txt
 keygen.py
 venv/
+MRR/
+old_data/
+processed_dfs/
+old_clustering_inputs/
+output_backtest/
+cluster_returns/
+weighted_runs/
+run_backtester.sh
 *.csv
