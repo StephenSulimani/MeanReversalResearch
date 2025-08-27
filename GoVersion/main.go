@@ -75,6 +75,7 @@ func (b *Boundary) ConvertToJSON() BoundaryJSON {
 func main() {
 	// Accept commandline arguments
 	// Usage: python StockPicker.py <cluster_csv> <n> <lookback_months> <output_json>
+	// Usage: python StockPicker.py <cluster_csv> <n> <lookback_months> <output_json>
 
 	if len(os.Args) < 5 {
 		fmt.Println("Usage: ./StockPicker <cluster_csv> <n> <lookback_months> <output_json>")
@@ -88,7 +89,7 @@ func main() {
 
 	randomFlag := false
 
-	if len(os.Args) > 5 {
+	if len(os.Args) >= 5 {
 		if os.Args[5] == "--r" {
 			randomFlag = true
 		}
