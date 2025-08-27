@@ -2,9 +2,9 @@
 set -euo pipefail
 
 # where your JSON lives
-INPUT_DIR="./cluster_returns"
+INPUT_DIR="./time_period_runs"
 # where you want the outputs
-OUTPUT_DIR="./output_backtest_unweighted"
+OUTPUT_DIR="./portfolio_output"
 # same for every run
 START_CAPITAL=1000000
 

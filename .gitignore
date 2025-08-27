@@ -11,4 +11,6 @@ output_backtest/
 cluster_returns/
 weighted_runs/
 run_backtester.sh
+time_period_runs/
 *.csv
+*.exe
