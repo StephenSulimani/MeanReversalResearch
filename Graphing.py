@@ -12,7 +12,7 @@ import datetime
 import pandas as pd
 from tqdm import tqdm
 
-from AlphaVantage import AlphaVantage
+# from AlphaVantage import AlphaVantage
 
 
 # ——— Style constants ———
