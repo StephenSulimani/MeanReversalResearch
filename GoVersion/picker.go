@@ -2,6 +2,7 @@ package main
 
 import (
 	"errors"
+	"math/rand"
 	"sort"
 	"time"
 
@@ -36,7 +37,7 @@ type kv struct {
 	Value float64
 }
 
-func PickStocks(clusterDef ClusterDefinition, data StockData, boundaries *[]Boundary, n int) {
+func PickStocks(clusterDef ClusterDefinition, data StockData, boundaries *[]Boundary, n int, randomFlag bool) {
 	bar := progressbar.Default(int64(len(*boundaries)), "Boundaries Processed")
 	for i, boundary := range *boundaries {
 		sectors, ok := clusterDef[boundary.LookbackStart]
@@ -47,6 +48,16 @@ func PickStocks(clusterDef ClusterDefinition, data StockData, boundaries *[]Boun
 		}
 
 		for _, stocks := range sectors {
+			if randomFlag {
+				randomBestStock := stocks[rand.Intn(len(stocks))]
+				randomWorstStock := stocks[rand.Intn(len(stocks))]
+
+				(*boundaries)[i].BestStocks = append((*boundaries)[i].BestStocks, randomBestStock)
+				(*boundaries)[i].WorstStocks = append((*boundaries)[i].WorstStocks, randomWorstStock)
+
+				continue
+
+			}
 			stock_returns := []kv{}
 
 			for _, stock := range stocks {
