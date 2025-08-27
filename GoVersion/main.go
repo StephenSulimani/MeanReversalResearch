@@ -114,7 +114,7 @@ func main() {
 
 	// fmt.Println(boundaries)
 
-	PickStocks(clusterDef, stocks, &boundaries, int(n))
+	PickStocks(clusterDef, stocks, &boundaries, int(n), randomFlag)
 
 	jsonBoundaries := []BoundaryJSON{}
 
