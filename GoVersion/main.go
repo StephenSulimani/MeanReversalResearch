@@ -74,9 +74,9 @@ func (b *Boundary) ConvertToJSON() BoundaryJSON {
 
 func main() {
 	// Accept commandline arguments
-	//Usage: python StockPicker.py <cluster_csv> <n> <lookback_months> <output_json>
+	// Usage: python StockPicker.py <cluster_csv> <n> <lookback_months> <output_json>
 
-	if len(os.Args) != 5 {
+	if len(os.Args) < 5 {
 		fmt.Println("Usage: ./StockPicker <cluster_csv> <n> <lookback_months> <output_json>")
 		return
 	}
@@ -86,8 +86,15 @@ func main() {
 	lookbackMonths, _ := strconv.ParseInt(os.Args[3], 10, 64)
 	outputJSON := os.Args[4]
 
-	clusterDef, dateRange, allStocks, err := ProcessClusterCSV(clusterCSV)
+	randomFlag := false
 
+	if len(os.Args) > 5 {
+		if os.Args[5] == "--r" {
+			randomFlag = true
+		}
+	}
+
+	clusterDef, dateRange, allStocks, err := ProcessClusterCSV(clusterCSV)
 	if err != nil {
 		fmt.Println(err)
 		return
@@ -98,7 +105,6 @@ func main() {
 	// fmt.Println(dateRange)
 
 	stocks, err := PreLoadStocks(allStocks)
-
 	if err != nil {
 		fmt.Println(err)
 		return
@@ -117,12 +123,10 @@ func main() {
 	}
 
 	json_bytes, err := json.MarshalIndent(jsonBoundaries, "", "    ")
-
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
 
 	os.WriteFile(outputJSON, json_bytes, 0644)
-
 }
