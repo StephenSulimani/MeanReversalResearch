@@ -25,7 +25,6 @@ func ProcessClusterCSV(filename string) (ClusterDefinition, DateRange, []string,
 	dateRange := DateRange{}
 
 	file, err := os.Open(filename)
-
 	if err != nil {
 		return clusterDef, dateRange, []string{}, err
 	}
@@ -34,7 +33,6 @@ func ProcessClusterCSV(filename string) (ClusterDefinition, DateRange, []string,
 	reader := csv.NewReader(file)
 
 	header, err := reader.Read()
-
 	if err != nil {
 		return clusterDef, dateRange, []string{}, err
 	}
@@ -71,7 +69,6 @@ func ProcessClusterCSV(filename string) (ClusterDefinition, DateRange, []string,
 		for i, col := range record {
 			if i == dateCol {
 				date, err = time.Parse("2006-01-02", col)
-
 				if err != nil {
 					return clusterDef, dateRange, []string{}, errors.New("unable to parse date")
 				}
@@ -102,7 +99,6 @@ func PreLoadStocks(allStocks []string) (StockData, error) {
 	stocks := StockData{}
 	for _, stock := range allStocks {
 		file, err := os.Open(fmt.Sprintf("data/%s.csv", stock))
-
 		if err != nil {
 			continue
 		}
@@ -110,7 +106,6 @@ func PreLoadStocks(allStocks []string) (StockData, error) {
 		reader := csv.NewReader(file)
 
 		header, err := reader.Read()
-
 		if err != nil {
 			return StockData{}, err
 		}
@@ -125,7 +120,7 @@ func PreLoadStocks(allStocks []string) (StockData, error) {
 			if strings.ToLower(col) == "date" {
 				dateCol = i
 			}
-			if strings.ToLower(col) == "close" || strings.ToLower(col) == "price" {
+			if strings.ToLower(col) == "close" || strings.ToLower(col) == "price" || strings.ToLower(col) == "adj_prc" {
 				priceCol = i
 			}
 		}
@@ -144,7 +139,6 @@ func PreLoadStocks(allStocks []string) (StockData, error) {
 			}
 
 			date, err := time.Parse("2006-01-02", record[dateCol])
-
 			if err != nil {
 				return StockData{}, errors.New("unable to parse date")
 			}
