@@ -48,9 +48,25 @@ func PickStocks(clusterDef ClusterDefinition, data StockData, boundaries *[]Boun
 		}
 
 		for _, stocks := range sectors {
+			defer bar.Add(1)
+			if len(stocks) <= 1 {
+				continue
+			}
 			if randomFlag {
 				randomBestStock := stocks[rand.Intn(len(stocks))]
 				randomWorstStock := stocks[rand.Intn(len(stocks))]
+
+				// for randomBestStock == "" {
+				// 	randomBestStock = stocks[rand.Intn(len(stocks))]
+				// }
+				//
+				// for randomWorstStock == "" {
+				// 	randomWorstStock = stocks[rand.Intn(len(stocks))]
+				// }
+				//
+				// for randomBestStock == randomWorstStock {
+				// 	randomWorstStock = stocks[rand.Intn(len(stocks))]
+				// }
 
 				(*boundaries)[i].BestStocks = append((*boundaries)[i].BestStocks, randomBestStock)
 				(*boundaries)[i].WorstStocks = append((*boundaries)[i].WorstStocks, randomWorstStock)
@@ -103,8 +119,6 @@ func PickStocks(clusterDef ClusterDefinition, data StockData, boundaries *[]Boun
 			}
 
 		}
-
-		bar.Add(1)
 
 	}
 }

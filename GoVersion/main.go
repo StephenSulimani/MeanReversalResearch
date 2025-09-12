@@ -89,7 +89,7 @@ func main() {
 
 	randomFlag := false
 
-	if len(os.Args) >= 5 {
+	if len(os.Args) > 5 {
 		if os.Args[5] == "--r" {
 			randomFlag = true
 		}

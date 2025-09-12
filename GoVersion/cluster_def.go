@@ -46,6 +46,9 @@ func ProcessClusterCSV(filename string) (ClusterDefinition, DateRange, []string,
 		if strings.ToLower(col) == "date" {
 			dateCol = i
 		} else {
+			if len(col) == 0 {
+				continue
+			}
 			identifierCols[i] = col
 			allIdentifiers = append(allIdentifiers, col)
 		}
